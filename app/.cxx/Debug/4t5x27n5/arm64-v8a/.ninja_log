@@ -90,3 +90,6 @@
 1	732	1657062833	CMakeFiles/ncnnyolox.dir/yoloxncnn.cpp.o	4c615d67649cbe01
 4	1037	1657062833	CMakeFiles/ncnnyolox.dir/yolox.cpp.o	9a8b7235eb65f057
 1116	1245	1657062833	/home/cyrill/Downloads/ncnn-android-yolov5/app/build/intermediates/cxx/Debug/4t5x27n5/obj/arm64-v8a/libncnnyolox.so	c25c008f812d4fc
+1	748	1657063199	CMakeFiles/ncnnyolox.dir/yolox.cpp.o	9a8b7235eb65f057
+1	603	1657063218	CMakeFiles/ncnnyolox.dir/yoloxncnn.cpp.o	4c615d67649cbe01
+603	693	1657063218	/home/cyrill/Downloads/ncnn-android-yolov5/app/build/intermediates/cxx/Debug/4t5x27n5/obj/arm64-v8a/libncnnyolox.so	c25c008f812d4fc

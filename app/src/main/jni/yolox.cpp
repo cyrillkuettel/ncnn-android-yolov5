@@ -7,10 +7,6 @@
 #define APPNAME "yoloxncnn.cpp"
 
 
-
-
-
-
 static inline float intersection_area(const Object& a, const Object& b)
 {
     cv::Rect_<float> inter = a.rect & b.rect;

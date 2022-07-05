@@ -54,12 +54,13 @@ public class MainActivity extends AppCompatActivity implements SurfaceHolder.Cal
      ║ C++ Layer │ NDK ║------------------------->║ Android / JVM Layer │ SDK ║
      ╚═══════════╧═════╝                          ╚═════════════════════╧═════╝
      * */
-    public void callback(String output) {
+    public void callback(String output, String probability) {
         Log.d("ncnn", "识别结果：" + output);
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                binding.textViewCurrentLabel.setText(String.format("label: %s", output));
+                binding.textViewCurrentLabel.setText(String.format("label: %s, probability: %s",
+                        output, probability));
             }
         });
     }

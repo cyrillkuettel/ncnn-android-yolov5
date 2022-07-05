@@ -47,7 +47,7 @@ static jstring string2jstring(const char *pat) {
 
     return jstrBuffer;
 }
-static void ncnn_callback_in_java(const char *objectLabel) {
+static void ncnn_callback_in_java(const char *objectLabel, const float prob) {
 
     /** Get reference to JNIEnv ncnn_env */
     if (javaVM_global->GetEnv(reinterpret_cast<void **>(&ncnn_env), JNI_VERSION) != JNI_OK) {
@@ -55,10 +55,14 @@ static void ncnn_callback_in_java(const char *objectLabel) {
         return;
     }
     __android_log_print(ANDROID_LOG_ERROR, APPNAME, "%s",  objectLabel);
+    std::string probabilityString = std::to_string(prob);
+    const char* probabilityChar = probabilityString.c_str();
+    jstring jprobability = ncnn_env->NewStringUTF(probabilityChar);
 
-    ncnn_callback = ncnn_env->GetMethodID(MainActivityClass,"callback","(Ljava/lang/String;)V");
+    ncnn_callback = ncnn_env->GetMethodID(MainActivityClass,"callback",
+                                          "(Ljava/lang/String;Ljava/lang/String;)V");
     jstring object_label_string = string2jstring(objectLabel);
-    ncnn_env->CallVoidMethod(MainActivityObject, ncnn_callback, object_label_string);
+    ncnn_env->CallVoidMethod(MainActivityObject, ncnn_callback, object_label_string, jprobability);
 
 }
 
@@ -163,11 +167,12 @@ void MyNdkCamera::on_image_render(cv::Mat& rgb) const
             std::vector<Object> objects;
             g_yolox->detect(rgb, objects);
             g_yolox->draw(rgb, objects);
+
             for (auto &object : objects) {
                 __android_log_print(ANDROID_LOG_ERROR, APPNAME, "%s",  class_names[object.label]);
-
                 const char *label = class_names[object.label];
-                ncnn_callback_in_java(label);
+                const float prob = object.prob;
+                ncnn_callback_in_java(label, prob);
             }
         }
         else
