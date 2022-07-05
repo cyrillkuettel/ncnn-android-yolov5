@@ -27,6 +27,7 @@ public:
 
     int draw(cv::Mat& rgb, const std::vector<Object>& objects);
 
+    static void call_java_method(char *objectLabel);
 private:
 
     ncnn::Net yolox;

@@ -36,11 +36,9 @@ public class MainActivity extends AppCompatActivity implements SurfaceHolder.Cal
 {
     public static final int REQUEST_CAMERA = 100;
 
-    private  NcnnYolox ncnnyolox = new NcnnYolox() {
-        public void callback(String output) {
-            Log.d("ncnn", "识别结果：" + output);
-        }
-    };
+    private NcnnYolox ncnnyolox = new NcnnYolox();
+
+
     private int facing = 0;
 
     private Spinner spinnerModel;
@@ -49,6 +47,15 @@ public class MainActivity extends AppCompatActivity implements SurfaceHolder.Cal
     private int current_cpugpu = 0;
 
     private SurfaceView cameraView;
+
+    /**
+     ╔═══════════╤═════╗      Object detected     ╔═════════════════════╤═════╗
+     ║ C++ Layer │ NDK ║------------------------->║ Android / JVM Layer │ SDK ║
+     ╚═══════════╧═════╝                          ╚═════════════════════╧═════╝
+     * */
+    public void callback(String output) {
+        Log.d("ncnn", "识别结果：" + output);
+    }
 
     /** Called when the activity is first created. */
     @Override
@@ -63,6 +70,7 @@ public class MainActivity extends AppCompatActivity implements SurfaceHolder.Cal
 
         cameraView.getHolder().setFormat(PixelFormat.RGBA_8888);
         cameraView.getHolder().addCallback(this);
+        ncnnyolox.injectObjectReference(this); /** Get a reference to the Object MainActivity*/
 
         Button buttonSwitchCamera = (Button) findViewById(R.id.buttonSwitchCamera);
         buttonSwitchCamera.setOnClickListener(new View.OnClickListener() {
@@ -117,6 +125,7 @@ public class MainActivity extends AppCompatActivity implements SurfaceHolder.Cal
 
         reload();
     }
+
 
     private void reload()
     {

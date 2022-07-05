@@ -25,23 +25,32 @@
 #endif // __ARM_NEON
 
 JavaVM *javaVM_global;
-JNIEnv *ncnn_env;
 jobject MainActivityObject; // to make non-static calls
 jclass MainActivityClass;
+JNIEnv *ncnn_env;
 
 jobject ncnn_thiz;
 jmethodID ncnn_callback;
 
 static jint JNI_VERSION = JNI_VERSION_1_4;
 
-static jstring string2jstring(JNIEnv *env, const char *pat) {
-    jclass strClass = env->FindClass("java/lang/String");
-    jmethodID ctorID = env->GetMethodID(strClass, "<init>", "([BLjava/lang/String;)V");
-    jbyteArray bytes = env->NewByteArray((jsize) strlen(pat));
-    env->SetByteArrayRegion(bytes, 0, (jsize) strlen(pat), (jbyte *) pat);
-    jstring encoding = env->NewStringUTF("utf-8");
-    return (jstring) env->NewObject(strClass, ctorID, bytes, encoding);
+jstring string2jstring(char *pat) {
+    if (ncnn_env == nullptr) {
+        __android_log_print(ANDROID_LOG_DEBUG, APPNAME, "ncnn_env null pointer.");
+    }
+    if (!ncnn_env) {
+        __android_log_print(ANDROID_LOG_DEBUG, APPNAME, "ncnn_env null pointer.");
+    }
+
+    jstring jstrBuffer = ncnn_env->NewStringUTF(pat);
+    if (!jstrBuffer) {
+        __android_log_print(ANDROID_LOG_DEBUG, APPNAME, "failed to create jstring.");
+    }
+
+    return jstrBuffer;
 }
+
+
 static int draw_unsupported(cv::Mat& rgb)
 {
     const char text[] = "unsupported";
@@ -127,6 +136,27 @@ public:
 static const char* class_names[] = {
         "glass", "mask", "mask_glass", "normal"
 };
+
+void Yolox::call_java_method(char *objectLabel) {
+
+    if (javaVM_global->GetEnv(reinterpret_cast<void **>(&ncnn_env), JNI_VERSION) != JNI_OK) {
+        // I'm not 100% sure if this is necessary. Does it impact performance?
+        __android_log_print(ANDROID_LOG_ERROR, APPNAME, " JNI_VERSION) != JNI_OK");
+        return;
+    }
+    ncnn_callback = ncnn_env->GetMethodID(MainActivityClass,
+                                                  "callback",
+                                                  "(Ljava/lang/String;)V");
+    if (ncnn_callback == nullptr) {
+        __android_log_print(ANDROID_LOG_ERROR, APPNAME, " ncnn_callback ==  NUll");
+        return;
+    } else {
+        jstring object_label_string = string2jstring(objectLabel);
+        ncnn_env->CallVoidMethod(MainActivityObject, ncnn_callback, object_label_string);
+    }
+
+}
+
 void MyNdkCamera::on_image_render(cv::Mat& rgb) const
 {
     // nanodet
@@ -139,16 +169,12 @@ void MyNdkCamera::on_image_render(cv::Mat& rgb) const
             g_yolox->detect(rgb, objects);
             g_yolox->draw(rgb, objects);
 
-            /*
-            char str[512] = {0};
-
             for (auto &object : objects) {
-                strcat(str, class_names[object.label]);
+                 char l = static_cast<char>(object.label);
+                 char *label = &l;
+                 Yolox::call_java_method(label);
             }
-            jstring js = string2jstring(ncnn_env, str);
-            ncnn_env->CallVoidMethod(ncnn_thiz, ncnn_callback, js);
-            return;
-             */
+
         }
         else
         {
@@ -159,10 +185,18 @@ void MyNdkCamera::on_image_render(cv::Mat& rgb) const
     draw_fps(rgb);
 }
 
-
 static MyNdkCamera* g_camera = 0;
 
 extern "C" {
+
+JNIEXPORT jboolean JNICALL
+Java_com_tencent_ncnnyolox_NcnnYolox_injectObjectReference(JNIEnv *env, jobject thiz,
+        jobject main_activity) {
+
+    MainActivityObject = (jobject) env->NewGlobalRef(main_activity);
+    return JNI_TRUE;
+
+}
 
 JNIEXPORT jint JNI_OnLoad(JavaVM* vm, void* reserved)
 {
@@ -298,5 +332,6 @@ JNIEXPORT jboolean JNICALL Java_com_tencent_ncnnyolox_NcnnYolox_setOutputWindow(
     return JNI_TRUE;
 }
 
-// here
 }
+
+

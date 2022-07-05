@@ -18,14 +18,15 @@ import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.view.Surface;
 
-public abstract class NcnnYolox
+public  class NcnnYolox
 {
     public native boolean loadModel(AssetManager mgr, int modelid, int cpugpu);
     public native boolean openCamera(int facing);
     public native boolean closeCamera();
     public native boolean setOutputWindow(Surface surface);
-    public native boolean getLabel();
-    public abstract void callback(String output);
+
+    public native boolean injectObjectReference(MainActivity mainActivity);
+
     static {
         System.loadLibrary("ncnnyolox");
     }
