@@ -18,6 +18,8 @@
 
         <TextView
             android:id="@+id/textViewCurrentLabel"
+            android:textSize="20sp"
+            android:textColor="#0000FF"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
         </TextView>

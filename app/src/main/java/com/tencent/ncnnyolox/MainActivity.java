@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements SurfaceHolder.Cal
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                binding.textViewCurrentLabel.setText(String.format("label: %s, probability: %s",
+                binding.textViewCurrentLabel.setText(String.format("label: %s, \nprobability: %s",
                         output, probability));
             }
         });
