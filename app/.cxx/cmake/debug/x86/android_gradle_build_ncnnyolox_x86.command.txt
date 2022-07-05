@@ -1,0 +1,7 @@
+Executable : /home/cyrill/Android/Sdk/cmake/3.10.2.4988404/bin/ninja
+arguments : 
+-C
+/home/cyrill/Downloads/ncnn-android-yolov5/app/.cxx/cmake/debug/x86
+ncnnyolox
+jvmArgs : 
+

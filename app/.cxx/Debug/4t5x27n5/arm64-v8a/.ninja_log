@@ -1,0 +1,22 @@
+# ninja log v5
+0	902	1657054297	CMakeFiles/ncnnyolox.dir/yoloxncnn.cpp.o	4c615d67649cbe01
+1	915	1657054297	CMakeFiles/ncnnyolox.dir/ndkcamera.cpp.o	61ede3d384841f9
+0	1006	1657054297	CMakeFiles/ncnnyolox.dir/yolox.cpp.o	9a8b7235eb65f057
+1006	1154	1657054297	/home/cyrill/Downloads/ncnn-android-yolov5/app/build/intermediates/cxx/Debug/4t5x27n5/obj/arm64-v8a/libncnnyolox.so	c25c008f812d4fc
+1	797	1657054644	CMakeFiles/ncnnyolox.dir/yolox.cpp.o	9a8b7235eb65f057
+797	949	1657054644	/home/cyrill/Downloads/ncnn-android-yolov5/app/build/intermediates/cxx/Debug/4t5x27n5/obj/arm64-v8a/libncnnyolox.so	c25c008f812d4fc
+1	814	1657054809	CMakeFiles/ncnnyolox.dir/yoloxncnn.cpp.o	4c615d67649cbe01
+814	977	1657054809	/home/cyrill/Downloads/ncnn-android-yolov5/app/build/intermediates/cxx/Debug/4t5x27n5/obj/arm64-v8a/libncnnyolox.so	c25c008f812d4fc
+1	599	1657054909	CMakeFiles/ncnnyolox.dir/yoloxncnn.cpp.o	4c615d67649cbe01
+599	690	1657054909	/home/cyrill/Downloads/ncnn-android-yolov5/app/build/intermediates/cxx/Debug/4t5x27n5/obj/arm64-v8a/libncnnyolox.so	c25c008f812d4fc
+1	788	1657054943	CMakeFiles/ncnnyolox.dir/yoloxncnn.cpp.o	4c615d67649cbe01
+788	1215	1657054944	/home/cyrill/Downloads/ncnn-android-yolov5/app/build/intermediates/cxx/Debug/4t5x27n5/obj/arm64-v8a/libncnnyolox.so	c25c008f812d4fc
+1	864	1657056287	CMakeFiles/ncnnyolox.dir/yoloxncnn.cpp.o	4c615d67649cbe01
+1	950	1657056287	CMakeFiles/ncnnyolox.dir/yolox.cpp.o	9a8b7235eb65f057
+0	884	1657056327	CMakeFiles/ncnnyolox.dir/yolox.cpp.o	9a8b7235eb65f057
+3	611	1657056373	CMakeFiles/ncnnyolox.dir/yoloxncnn.cpp.o	4c615d67649cbe01
+0	635	1657056428	CMakeFiles/ncnnyolox.dir/yoloxncnn.cpp.o	4c615d67649cbe01
+635	824	1657056428	/home/cyrill/Downloads/ncnn-android-yolov5/app/build/intermediates/cxx/Debug/4t5x27n5/obj/arm64-v8a/libncnnyolox.so	c25c008f812d4fc
+0	802	1657056495	CMakeFiles/ncnnyolox.dir/yoloxncnn.cpp.o	4c615d67649cbe01
+0	878	1657056495	CMakeFiles/ncnnyolox.dir/yolox.cpp.o	9a8b7235eb65f057
+878	1047	1657056495	/home/cyrill/Downloads/ncnn-android-yolov5/app/build/intermediates/cxx/Debug/4t5x27n5/obj/arm64-v8a/libncnnyolox.so	c25c008f812d4fc

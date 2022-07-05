@@ -1,0 +1,33 @@
+{
+  "buildFiles": [
+    "/home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/jni/CMakeLists.txt"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "/home/cyrill/Android/Sdk/cmake/3.10.2.4988404/bin/ninja",
+      "-C",
+      "/home/cyrill/Downloads/ncnn-android-yolov5/app/.cxx/Debug/j4f3g61m/x86",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "/home/cyrill/Android/Sdk/cmake/3.10.2.4988404/bin/ninja",
+    "-C",
+    "/home/cyrill/Downloads/ncnn-android-yolov5/app/.cxx/Debug/j4f3g61m/x86",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {
+    "ncnnyolox-Debug-x86": {
+      "artifactName": "ncnnyolox",
+      "buildCommandComponents": [
+        "/home/cyrill/Android/Sdk/cmake/3.10.2.4988404/bin/ninja",
+        "-C",
+        "/home/cyrill/Downloads/ncnn-android-yolov5/app/.cxx/Debug/j4f3g61m/x86",
+        "ncnnyolox"
+      ],
+      "abi": "x86",
+      "output": "/home/cyrill/Downloads/ncnn-android-yolov5/app/build/intermediates/cxx/Debug/j4f3g61m/obj/x86/libncnnyolox.so",
+      "runtimeFiles": []
+    }
+  }
+}

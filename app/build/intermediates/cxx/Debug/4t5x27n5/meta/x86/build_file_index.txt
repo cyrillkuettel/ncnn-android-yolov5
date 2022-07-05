@@ -1,0 +1,1 @@
+/home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/jni/CMakeLists.txt

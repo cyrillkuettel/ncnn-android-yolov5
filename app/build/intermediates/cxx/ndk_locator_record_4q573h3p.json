@@ -1,0 +1,11 @@
+{
+  "ndk": "/home/cyrill/Android/Sdk/ndk/23.2.8568313",
+  "revision": {
+    "mMajor": 23,
+    "mMinor": 2,
+    "mMicro": 8568313,
+    "mPreview": 0,
+    "mPrecision": "MICRO",
+    "mPreviewSeparator": " "
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "buildFiles": [
+    "/home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/jni/opencv-mobile-4.5.3-android/sdk/native/jni/OpenCVConfig.cmake",
+    "/home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/jni/opencv-mobile-4.5.3-android/sdk/native/jni/abi-x86_64/OpenCVConfig.cmake",
+    "/home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/jni/ncnn-20220701-android-vulkan/x86_64/lib/cmake/OGLCompilerTargets-release.cmake",
+    "/home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/jni/ncnn-20220701-android-vulkan/x86_64/lib/cmake/SPIRVTargets.cmake",
+    "/home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/jni/ncnn-20220701-android-vulkan/x86_64/lib/cmake/SPIRVTargets-release.cmake",
+    "/home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/jni/ncnn-20220701-android-vulkan/x86_64/lib/cmake/ncnn/ncnn.cmake",
+    "/home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/jni/opencv-mobile-4.5.3-android/sdk/native/jni/abi-x86_64/OpenCVModules.cmake",
+    "/home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/jni/CMakeLists.txt",
+    "/home/cyrill/Android/Sdk/ndk/24.0.8215888/build/cmake/android-legacy.toolchain.cmake",
+    "/home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/jni/ncnn-20220701-android-vulkan/x86_64/lib/cmake/ncnn/ncnn-release.cmake",
+    "/home/cyrill/Android/Sdk/ndk/24.0.8215888/build/cmake/android.toolchain.cmake",
+    "/home/cyrill/Android/Sdk/ndk/24.0.8215888/build/cmake/compiler_id.cmake",
+    "/home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/jni/opencv-mobile-4.5.3-android/sdk/native/jni/abi-x86_64/OpenCVModules-release.cmake",
+    "/home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/jni/ncnn-20220701-android-vulkan/x86_64/lib/cmake/OSDependentTargets-release.cmake",
+    "/home/cyrill/Android/Sdk/ndk/24.0.8215888/build/cmake/platforms.cmake",
+    "/home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/jni/ncnn-20220701-android-vulkan/x86_64/lib/cmake/OGLCompilerTargets.cmake",
+    "/home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/jni/opencv-mobile-4.5.3-android/sdk/native/jni/OpenCVConfig-version.cmake",
+    "/home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/jni/ncnn-20220701-android-vulkan/x86_64/lib/cmake/glslangTargets-release.cmake",
+    "/home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/jni/ncnn-20220701-android-vulkan/x86_64/lib/cmake/ncnn/ncnnConfig.cmake",
+    "/home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/jni/ncnn-20220701-android-vulkan/x86_64/lib/cmake/glslangTargets.cmake",
+    "/home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/jni/ncnn-20220701-android-vulkan/x86_64/lib/cmake/OSDependentTargets.cmake"
+  ],
+  "cleanCommands": [
+    "/home/cyrill/Android/Sdk/cmake/3.10.2.4988404/bin/ninja -C \"/home/cyrill/Downloads/ncnn-android-yolov5/app/.cxx/cmake/debug/x86_64\" clean"
+  ],
+  "buildTargetsCommand": "/home/cyrill/Android/Sdk/cmake/3.10.2.4988404/bin/ninja -C \"/home/cyrill/Downloads/ncnn-android-yolov5/app/.cxx/cmake/debug/x86_64\" {LIST_OF_TARGETS_TO_BUILD}",
+  "libraries": {
+    "ncnnyolox-Debug-x86_64": {
+      "artifactName": "ncnnyolox",
+      "buildCommand": "/home/cyrill/Android/Sdk/cmake/3.10.2.4988404/bin/ninja -C \"/home/cyrill/Downloads/ncnn-android-yolov5/app/.cxx/cmake/debug/x86_64\" ncnnyolox",
+      "abi": "x86_64",
+      "output": "/home/cyrill/Downloads/ncnn-android-yolov5/app/build/intermediates/cmake/debug/obj/x86_64/libncnnyolox.so"
+    }
+  }
+}

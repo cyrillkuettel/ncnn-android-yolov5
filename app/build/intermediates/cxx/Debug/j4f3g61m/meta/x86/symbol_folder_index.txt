@@ -1,0 +1,1 @@
+/home/cyrill/Downloads/ncnn-android-yolov5/app/build/intermediates/cxx/Debug/j4f3g61m/obj/x86
