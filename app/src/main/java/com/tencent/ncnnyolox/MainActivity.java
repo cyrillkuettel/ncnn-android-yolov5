@@ -27,6 +27,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.Spinner;
 
+import com.tencent.ncnnyolox.databinding.ActivityMainBinding;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -37,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements SurfaceHolder.Cal
     public static final int REQUEST_CAMERA = 100;
 
     private NcnnYolox ncnnyolox = new NcnnYolox();
-
+    private ActivityMainBinding binding;
 
     private int facing = 0;
 
@@ -55,6 +56,12 @@ public class MainActivity extends AppCompatActivity implements SurfaceHolder.Cal
      * */
     public void callback(String output) {
         Log.d("ncnn", "识别结果：" + output);
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                binding.textViewCurrentLabel.setText(String.format("label: %s", output));
+            }
+        });
     }
 
     /** Called when the activity is first created. */
@@ -62,7 +69,8 @@ public class MainActivity extends AppCompatActivity implements SurfaceHolder.Cal
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 

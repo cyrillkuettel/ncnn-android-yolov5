@@ -4,6 +4,11 @@
 #include <opencv2/imgproc/imgproc.hpp>
 #include <iostream>
 #include "cpu.h"
+#define APPNAME "yoloxncnn.cpp"
+
+
+
+
 
 
 static inline float intersection_area(const Object& a, const Object& b)
@@ -395,6 +400,8 @@ int Yolox::detect(const cv::Mat& rgb, std::vector<Object>& objects, float prob_t
     return 0;
 }
 
+
+
 int Yolox::draw(cv::Mat& rgb, const std::vector<Object>& objects)
 {
     static const char* class_names[] = {
@@ -455,10 +462,7 @@ int Yolox::draw(cv::Mat& rgb, const std::vector<Object>& objects)
         cv::putText(rgb, text, cv::Point(x, y + label_size.height), cv::FONT_HERSHEY_SIMPLEX, 0.5, textcc, 1);
 
         __android_log_print(ANDROID_LOG_DEBUG, "YoloV5Ncnn", "%d %d %d %.2f %.2f coordinate", x, y, obj.label, label_size.width, label_size.height);
-       // temp = obj.label;
     }
-
     return 0;
-    // return temp;
 }
 

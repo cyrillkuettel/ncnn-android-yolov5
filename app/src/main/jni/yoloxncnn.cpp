@@ -24,21 +24,19 @@
 #include <arm_neon.h>
 #endif // __ARM_NEON
 
-JavaVM *javaVM_global;
-jobject MainActivityObject; // to make non-static calls
-jclass MainActivityClass;
 JNIEnv *ncnn_env;
 
-jobject ncnn_thiz;
-jmethodID ncnn_callback;
 
 static jint JNI_VERSION = JNI_VERSION_1_4;
 
-jstring string2jstring(char *pat) {
-    if (ncnn_env == nullptr) {
-        __android_log_print(ANDROID_LOG_DEBUG, APPNAME, "ncnn_env null pointer.");
-    }
-    if (!ncnn_env) {
+JavaVM *javaVM_global;
+jmethodID ncnn_callback;
+jclass MainActivityClass;
+jobject MainActivityObject; // to make non-static calls
+
+
+static jstring string2jstring(const char *pat) {
+    if (!ncnn_env || ncnn_env == nullptr) {
         __android_log_print(ANDROID_LOG_DEBUG, APPNAME, "ncnn_env null pointer.");
     }
 
@@ -49,6 +47,21 @@ jstring string2jstring(char *pat) {
 
     return jstrBuffer;
 }
+static void ncnn_callback_in_java(const char *objectLabel) {
+
+    /** Get reference to JNIEnv ncnn_env */
+    if (javaVM_global->GetEnv(reinterpret_cast<void **>(&ncnn_env), JNI_VERSION) != JNI_OK) {
+        __android_log_print(ANDROID_LOG_ERROR, APPNAME, " JNI_VERSION) != JNI_OK");
+        return;
+    }
+    __android_log_print(ANDROID_LOG_ERROR, APPNAME, "%s",  objectLabel);
+
+    ncnn_callback = ncnn_env->GetMethodID(MainActivityClass,"callback","(Ljava/lang/String;)V");
+    jstring object_label_string = string2jstring(objectLabel);
+    ncnn_env->CallVoidMethod(MainActivityObject, ncnn_callback, object_label_string);
+
+}
+
 
 
 static int draw_unsupported(cv::Mat& rgb)
@@ -137,25 +150,7 @@ static const char* class_names[] = {
         "glass", "mask", "mask_glass", "normal"
 };
 
-void Yolox::call_java_method(char *objectLabel) {
 
-    if (javaVM_global->GetEnv(reinterpret_cast<void **>(&ncnn_env), JNI_VERSION) != JNI_OK) {
-        // I'm not 100% sure if this is necessary. Does it impact performance?
-        __android_log_print(ANDROID_LOG_ERROR, APPNAME, " JNI_VERSION) != JNI_OK");
-        return;
-    }
-    ncnn_callback = ncnn_env->GetMethodID(MainActivityClass,
-                                                  "callback",
-                                                  "(Ljava/lang/String;)V");
-    if (ncnn_callback == nullptr) {
-        __android_log_print(ANDROID_LOG_ERROR, APPNAME, " ncnn_callback ==  NUll");
-        return;
-    } else {
-        jstring object_label_string = string2jstring(objectLabel);
-        ncnn_env->CallVoidMethod(MainActivityObject, ncnn_callback, object_label_string);
-    }
-
-}
 
 void MyNdkCamera::on_image_render(cv::Mat& rgb) const
 {
@@ -168,13 +163,12 @@ void MyNdkCamera::on_image_render(cv::Mat& rgb) const
             std::vector<Object> objects;
             g_yolox->detect(rgb, objects);
             g_yolox->draw(rgb, objects);
-
             for (auto &object : objects) {
-                 char l = static_cast<char>(object.label);
-                 char *label = &l;
-                 Yolox::call_java_method(label);
-            }
+                __android_log_print(ANDROID_LOG_ERROR, APPNAME, "%s",  class_names[object.label]);
 
+                const char *label = class_names[object.label];
+                ncnn_callback_in_java(label);
+            }
         }
         else
         {

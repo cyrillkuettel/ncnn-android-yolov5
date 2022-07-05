@@ -15,6 +15,12 @@
         android:layout_height="wrap_content"
         android:text="Switch_Camera" />
 
+    <TextView
+        android:id="@+id/textViewCurrentLabel"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </TextView>
 
 
     </LinearLayout>

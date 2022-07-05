@@ -12,7 +12,9 @@ struct Object
     float prob;
 };
 
-
+extern JavaVM* javaVM_global;
+extern jclass MainActivityClass;
+extern jobject MainActivityObject;
 
 class Yolox
 {
@@ -27,7 +29,6 @@ public:
 
     int draw(cv::Mat& rgb, const std::vector<Object>& objects);
 
-    static void call_java_method(char *objectLabel);
 private:
 
     ncnn::Net yolox;

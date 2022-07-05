@@ -1,1 +1,0 @@
-/home/cyrill/Downloads/ncnn-android-yolov5/app/build/intermediates/cxx/RelWithDebInfo/6o5s145q/obj/x86
