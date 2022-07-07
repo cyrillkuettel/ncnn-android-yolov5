@@ -1,4 +1,4 @@
-The yolov5-lite object detection
+The yolov5s object detection
 
 This is a sample ncnn android project, it depends on ncnn library and opencv
 
@@ -6,7 +6,8 @@ https://github.com/Tencent/ncnn
 
 https://github.com/nihui/opencv-mobile
 
-
+This is an implementation of https://github.com/Tencent/ncnn/blob/master/examples/yolov5_pnnx.cpp 
+for android. 
 
 ## how to build and run
 ### step1

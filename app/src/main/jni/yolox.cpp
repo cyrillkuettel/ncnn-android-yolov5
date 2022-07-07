@@ -4,6 +4,7 @@
 #include <opencv2/imgproc/imgproc.hpp>
 #include <iostream>
 #include "cpu.h"
+#include "benchmark.h"
 #define APPNAME "yolox.cpp"
 
 const float norm_vals[3] = {1 / 255.f, 1 / 255.f, 1 / 255.f};
@@ -480,9 +481,7 @@ int Yolox::detect(const cv::Mat& rgb, std::vector<Object>& objects, float prob_t
 
 
 int Yolox::detect_yolov5(const cv::Mat& rgb, std::vector<Object>& objects, float prob_threshold, float nms_threshold) {
-
-    // yolox.opt.use_vulkan_compute = true;
-    // yolov5.opt.use_bf16_storage = true;
+    double start_time = ncnn::get_current_time();
 
     int img_w = rgb.cols;
     int img_h = rgb.rows;
@@ -514,7 +513,7 @@ int Yolox::detect_yolov5(const cv::Mat& rgb, std::vector<Object>& objects, float
     int wpad = (w + max_stride - 1) / max_stride * max_stride - w;
     int hpad = (h + max_stride - 1) / max_stride * max_stride - h;
     ncnn::Mat in_pad;
-    /** what is this? this differs aswell, */
+    /** what exactly is this? this differs from the other detect function, */
     ncnn::copy_make_border(in, in_pad, hpad / 2, hpad - hpad / 2, wpad / 2, wpad - wpad / 2, ncnn::BORDER_CONSTANT, 114.f);
 
     in_pad.substract_mean_normalize(0, norm_vals);
@@ -613,10 +612,54 @@ int Yolox::detect_yolov5(const cv::Mat& rgb, std::vector<Object>& objects, float
         objects[i].rect.width = x1 - x0;
         objects[i].rect.height = y1 - y0;
     }
-
+    double elapsed = ncnn::get_current_time() - start_time;
+    __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "inference time is approx %.2fms ", elapsed);
     return 0;
 }
 
+int Yolox::draw_yolov5(cv::Mat& rgb, const std::vector<Object>& objects) {
+    static const char* class_names[] = {
+            "person", "bicycle", "car", "motorcycle", "airplane", "bus", "train", "truck", "boat", "traffic light",
+            "fire hydrant", "stop sign", "parking meter", "bench", "bird", "cat", "dog", "horse", "sheep", "cow",
+            "elephant", "bear", "zebra", "giraffe", "backpack", "umbrella", "handbag", "tie", "suitcase", "frisbee",
+            "skis", "snowboard", "sports ball", "kite", "baseball bat", "baseball glove", "skateboard", "surfboard",
+            "tennis racket", "bottle", "wine glass", "cup", "fork", "knife", "spoon", "bowl", "banana", "apple",
+            "sandwich", "orange", "broccoli", "carrot", "hot dog", "pizza", "donut", "cake", "chair", "couch",
+            "potted plant", "bed", "dining table", "toilet", "tv", "laptop", "mouse", "remote", "keyboard", "cell phone",
+            "microwave", "oven", "toaster", "sink", "refrigerator", "book", "clock", "vase", "scissors", "teddy bear",
+            "hair drier", "toothbrush"
+    };
+
+    cv::Mat image = rgb.clone();
+
+    for (const auto & obj : objects)
+    {
+        fprintf(stderr, "%d = %.5f at %.2f %.2f %.2f x %.2f\n", obj.label, obj.prob,
+                obj.rect.x, obj.rect.y, obj.rect.width, obj.rect.height);
+
+        cv::rectangle(image, obj.rect, cv::Scalar(255, 0, 0));
+
+        char text[256];
+        sprintf(text, "%s %.1f%%", class_names[obj.label], obj.prob * 100);
+
+        int baseLine = 0;
+        cv::Size label_size = cv::getTextSize(text, cv::FONT_HERSHEY_SIMPLEX, 0.5, 1, &baseLine);
+
+        int x = obj.rect.x;
+        int y = obj.rect.y - label_size.height - baseLine;
+        if (y < 0)
+            y = 0;
+        if (x + label_size.width > image.cols)
+            x = image.cols - label_size.width;
+
+        cv::rectangle(image, cv::Rect(cv::Point(x, y), cv::Size(label_size.width, label_size.height + baseLine)),
+                      cv::Scalar(255, 255, 255), -1);
+
+        cv::putText(image, text, cv::Point(x, y + label_size.height),
+                    cv::FONT_HERSHEY_SIMPLEX, 0.5, cv::Scalar(0, 0, 0));
+    }
+    return 0;
+}
 
 
 int Yolox::draw(cv::Mat& rgb, const std::vector<Object>& objects)
@@ -651,8 +694,7 @@ int Yolox::draw(cv::Mat& rgb, const std::vector<Object>& objects)
             { 34,  87, 255},
             { 72,  85, 121},
             {158, 158, 158},
-            {139, 125,  96}
-    };
+            {139, 125,  96}};
 
     int color_index = 0;
     for (size_t i = 0; i < objects.size(); i++)

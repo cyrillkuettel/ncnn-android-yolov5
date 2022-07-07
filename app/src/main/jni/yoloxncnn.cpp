@@ -163,7 +163,7 @@ void MyNdkCamera::on_image_render(cv::Mat& rgb) const
         {
             std::vector<Object> objects;
              g_yolox->detect_yolov5(rgb, objects);
-             // g_yolox->draw(rgb, objects);
+             // g_yolox->draw_yolov5(rgb, objects);
 
             /*
                   // Note this block will crash (!) if  g_yolox->draw is not called.

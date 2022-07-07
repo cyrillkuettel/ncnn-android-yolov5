@@ -29,6 +29,7 @@ public:
 
     int detect_yolov5(const cv::Mat& rgb, std::vector<Object>& objects, float prob_threshold = 0.65f, float nms_threshold = 0.75f);
 
+    int draw_yolov5(cv::Mat& rgb, const std::vector<Object>& objects);
 
     int draw(cv::Mat& rgb, const std::vector<Object>& objects);
 

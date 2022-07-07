@@ -26,62 +26,63 @@
 18        android:extractNativeLibs="false"
 19        android:label="@string/app_name"
 19-->/home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:11:9-41
-20        android:theme="@style/Theme.AppCompat.Light" >
-20-->/home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:10:9-53
-21        <activity
-21-->/home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:12:9-19:20
-22            android:name="com.tencent.ncnnyolox.MainActivity"
-22-->/home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:12:19-46
-23            android:label="@string/app_name"
-23-->/home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:13:19-51
-24            android:screenOrientation="portrait" >
-24-->/home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:14:19-55
-25            <intent-filter>
-25-->/home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:15:13-18:29
-26                <action android:name="android.intent.action.MAIN" />
-26-->/home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:16:17-69
-26-->/home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:16:25-66
-27
-28                <category android:name="android.intent.category.LAUNCHER" />
-28-->/home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:17:17-77
-28-->/home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:17:27-74
-29            </intent-filter>
-30        </activity>
-31
-32        <provider
-32-->[androidx.emoji2:emoji2:1.0.0] /home/cyrill/.gradle/caches/transforms-3/73850b32b2c7ce32b12b91c16b2382c2/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:26:9-34:20
-33            android:name="androidx.startup.InitializationProvider"
-33-->[androidx.emoji2:emoji2:1.0.0] /home/cyrill/.gradle/caches/transforms-3/73850b32b2c7ce32b12b91c16b2382c2/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:27:13-67
-34            android:authorities="com.tencent.ncnnyolox.androidx-startup"
-34-->[androidx.emoji2:emoji2:1.0.0] /home/cyrill/.gradle/caches/transforms-3/73850b32b2c7ce32b12b91c16b2382c2/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:28:13-68
-35            android:exported="false" >
-35-->[androidx.emoji2:emoji2:1.0.0] /home/cyrill/.gradle/caches/transforms-3/73850b32b2c7ce32b12b91c16b2382c2/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:29:13-37
-36            <meta-data
-36-->[androidx.emoji2:emoji2:1.0.0] /home/cyrill/.gradle/caches/transforms-3/73850b32b2c7ce32b12b91c16b2382c2/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:31:13-33:52
-37                android:name="androidx.emoji2.text.EmojiCompatInitializer"
-37-->[androidx.emoji2:emoji2:1.0.0] /home/cyrill/.gradle/caches/transforms-3/73850b32b2c7ce32b12b91c16b2382c2/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:32:17-75
-38                android:value="androidx.startup" />
-38-->[androidx.emoji2:emoji2:1.0.0] /home/cyrill/.gradle/caches/transforms-3/73850b32b2c7ce32b12b91c16b2382c2/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:33:17-49
-39            <meta-data
-39-->[androidx.lifecycle:lifecycle-process:2.4.0] /home/cyrill/.gradle/caches/transforms-3/280b8c662ae12c28e2c58a98b88e76a9/transformed/jetified-lifecycle-process-2.4.0/AndroidManifest.xml:31:13-33:52
-40                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-40-->[androidx.lifecycle:lifecycle-process:2.4.0] /home/cyrill/.gradle/caches/transforms-3/280b8c662ae12c28e2c58a98b88e76a9/transformed/jetified-lifecycle-process-2.4.0/AndroidManifest.xml:32:17-78
-41                android:value="androidx.startup" />
-41-->[androidx.lifecycle:lifecycle-process:2.4.0] /home/cyrill/.gradle/caches/transforms-3/280b8c662ae12c28e2c58a98b88e76a9/transformed/jetified-lifecycle-process-2.4.0/AndroidManifest.xml:33:17-49
-42        </provider>
-43
-44        <uses-library
-44-->[androidx.window:window:1.0.0] /home/cyrill/.gradle/caches/transforms-3/29a4a2635fe3ae7324fd4158242cc016/transformed/jetified-window-1.0.0/AndroidManifest.xml:25:9-27:40
-45            android:name="androidx.window.extensions"
-45-->[androidx.window:window:1.0.0] /home/cyrill/.gradle/caches/transforms-3/29a4a2635fe3ae7324fd4158242cc016/transformed/jetified-window-1.0.0/AndroidManifest.xml:26:13-54
-46            android:required="false" />
-46-->[androidx.window:window:1.0.0] /home/cyrill/.gradle/caches/transforms-3/29a4a2635fe3ae7324fd4158242cc016/transformed/jetified-window-1.0.0/AndroidManifest.xml:27:13-37
-47        <uses-library
-47-->[androidx.window:window:1.0.0] /home/cyrill/.gradle/caches/transforms-3/29a4a2635fe3ae7324fd4158242cc016/transformed/jetified-window-1.0.0/AndroidManifest.xml:28:9-30:40
-48            android:name="androidx.window.sidecar"
-48-->[androidx.window:window:1.0.0] /home/cyrill/.gradle/caches/transforms-3/29a4a2635fe3ae7324fd4158242cc016/transformed/jetified-window-1.0.0/AndroidManifest.xml:29:13-51
-49            android:required="false" />
-49-->[androidx.window:window:1.0.0] /home/cyrill/.gradle/caches/transforms-3/29a4a2635fe3ae7324fd4158242cc016/transformed/jetified-window-1.0.0/AndroidManifest.xml:30:13-37
-50    </application>
-51
-52</manifest>
+20        android:testOnly="true"
+21        android:theme="@style/Theme.AppCompat.Light" >
+21-->/home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:10:9-53
+22        <activity
+22-->/home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:12:9-19:20
+23            android:name="com.tencent.ncnnyolox.MainActivity"
+23-->/home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:12:19-46
+24            android:label="@string/app_name"
+24-->/home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:13:19-51
+25            android:screenOrientation="portrait" >
+25-->/home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:14:19-55
+26            <intent-filter>
+26-->/home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:15:13-18:29
+27                <action android:name="android.intent.action.MAIN" />
+27-->/home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:16:17-69
+27-->/home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:16:25-66
+28
+29                <category android:name="android.intent.category.LAUNCHER" />
+29-->/home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:17:17-77
+29-->/home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:17:27-74
+30            </intent-filter>
+31        </activity>
+32
+33        <provider
+33-->[androidx.emoji2:emoji2:1.0.0] /home/cyrill/.gradle/caches/transforms-3/73850b32b2c7ce32b12b91c16b2382c2/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:26:9-34:20
+34            android:name="androidx.startup.InitializationProvider"
+34-->[androidx.emoji2:emoji2:1.0.0] /home/cyrill/.gradle/caches/transforms-3/73850b32b2c7ce32b12b91c16b2382c2/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:27:13-67
+35            android:authorities="com.tencent.ncnnyolox.androidx-startup"
+35-->[androidx.emoji2:emoji2:1.0.0] /home/cyrill/.gradle/caches/transforms-3/73850b32b2c7ce32b12b91c16b2382c2/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:28:13-68
+36            android:exported="false" >
+36-->[androidx.emoji2:emoji2:1.0.0] /home/cyrill/.gradle/caches/transforms-3/73850b32b2c7ce32b12b91c16b2382c2/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:29:13-37
+37            <meta-data
+37-->[androidx.emoji2:emoji2:1.0.0] /home/cyrill/.gradle/caches/transforms-3/73850b32b2c7ce32b12b91c16b2382c2/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:31:13-33:52
+38                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+38-->[androidx.emoji2:emoji2:1.0.0] /home/cyrill/.gradle/caches/transforms-3/73850b32b2c7ce32b12b91c16b2382c2/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:32:17-75
+39                android:value="androidx.startup" />
+39-->[androidx.emoji2:emoji2:1.0.0] /home/cyrill/.gradle/caches/transforms-3/73850b32b2c7ce32b12b91c16b2382c2/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:33:17-49
+40            <meta-data
+40-->[androidx.lifecycle:lifecycle-process:2.4.0] /home/cyrill/.gradle/caches/transforms-3/280b8c662ae12c28e2c58a98b88e76a9/transformed/jetified-lifecycle-process-2.4.0/AndroidManifest.xml:31:13-33:52
+41                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+41-->[androidx.lifecycle:lifecycle-process:2.4.0] /home/cyrill/.gradle/caches/transforms-3/280b8c662ae12c28e2c58a98b88e76a9/transformed/jetified-lifecycle-process-2.4.0/AndroidManifest.xml:32:17-78
+42                android:value="androidx.startup" />
+42-->[androidx.lifecycle:lifecycle-process:2.4.0] /home/cyrill/.gradle/caches/transforms-3/280b8c662ae12c28e2c58a98b88e76a9/transformed/jetified-lifecycle-process-2.4.0/AndroidManifest.xml:33:17-49
+43        </provider>
+44
+45        <uses-library
+45-->[androidx.window:window:1.0.0] /home/cyrill/.gradle/caches/transforms-3/29a4a2635fe3ae7324fd4158242cc016/transformed/jetified-window-1.0.0/AndroidManifest.xml:25:9-27:40
+46            android:name="androidx.window.extensions"
+46-->[androidx.window:window:1.0.0] /home/cyrill/.gradle/caches/transforms-3/29a4a2635fe3ae7324fd4158242cc016/transformed/jetified-window-1.0.0/AndroidManifest.xml:26:13-54
+47            android:required="false" />
+47-->[androidx.window:window:1.0.0] /home/cyrill/.gradle/caches/transforms-3/29a4a2635fe3ae7324fd4158242cc016/transformed/jetified-window-1.0.0/AndroidManifest.xml:27:13-37
+48        <uses-library
+48-->[androidx.window:window:1.0.0] /home/cyrill/.gradle/caches/transforms-3/29a4a2635fe3ae7324fd4158242cc016/transformed/jetified-window-1.0.0/AndroidManifest.xml:28:9-30:40
+49            android:name="androidx.window.sidecar"
+49-->[androidx.window:window:1.0.0] /home/cyrill/.gradle/caches/transforms-3/29a4a2635fe3ae7324fd4158242cc016/transformed/jetified-window-1.0.0/AndroidManifest.xml:29:13-51
+50            android:required="false" />
+50-->[androidx.window:window:1.0.0] /home/cyrill/.gradle/caches/transforms-3/29a4a2635fe3ae7324fd4158242cc016/transformed/jetified-window-1.0.0/AndroidManifest.xml:30:13-37
+51    </application>
+52
+53</manifest>
