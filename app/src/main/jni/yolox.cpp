@@ -4,7 +4,7 @@
 #include <opencv2/imgproc/imgproc.hpp>
 #include <iostream>
 #include "cpu.h"
-#define APPNAME "yoloxncnn.cpp"
+#define APPNAME "yolox.cpp"
 
 
 static inline float intersection_area(const Object& a, const Object& b)
@@ -264,10 +264,7 @@ int Yolox::load(AAssetManager* mgr, const char* modeltype, int _target_size, boo
 
 int Yolox::detect(const cv::Mat& rgb, std::vector<Object>& objects, float prob_threshold, float nms_threshold)
 {
-    if (!yolox.load_param("yolov5s.ncnn.param")) {
 
-        exit(-1);
-    }
 
     int img_w = rgb.cols;
     int img_h = rgb.rows;
@@ -329,6 +326,7 @@ int Yolox::detect(const cv::Mat& rgb, std::vector<Object>& objects, float prob_t
 
         proposals.insert(proposals.end(), objects8.begin(), objects8.end());
     }
+    __android_log_print(ANDROID_LOG_DEBUG, APPNAME, "stride 8 worked");
 
     // stride 16
     {
@@ -348,6 +346,7 @@ int Yolox::detect(const cv::Mat& rgb, std::vector<Object>& objects, float prob_t
 
         proposals.insert(proposals.end(), objects16.begin(), objects16.end());
     }
+    __android_log_print(ANDROID_LOG_DEBUG, APPNAME, "stride 16 worked");
 
     // stride 32
     {
@@ -367,9 +366,11 @@ int Yolox::detect(const cv::Mat& rgb, std::vector<Object>& objects, float prob_t
 
         proposals.insert(proposals.end(), objects32.begin(), objects32.end());
     }
+    __android_log_print(ANDROID_LOG_DEBUG, APPNAME, "stride 32 worked");
 
     // sort all proposals by score from highest to lowest
     qsort_descent_inplace(proposals);
+    __android_log_print(ANDROID_LOG_DEBUG, APPNAME, "qsort_descent_inplace worked");
 
     // apply nms with nms_threshold
     std::vector<int> picked;
@@ -474,7 +475,7 @@ int Yolox::draw(cv::Mat& rgb, const std::vector<Object>& objects)
 
         cv::putText(rgb, text, cv::Point(x, y + label_size.height), cv::FONT_HERSHEY_SIMPLEX, 0.5, textcc, 1);
 
-        __android_log_print(ANDROID_LOG_DEBUG, "YoloV5Ncnn", "%d %d %d %.2f %.2f coordinate", x, y, obj.label, label_size.width, label_size.height);
+        // __android_log_print(ANDROID_LOG_DEBUG, "YoloV5Ncnn", "%d %d %d %.2f %.2f coordinate", x, y, obj.label, label_size.width, label_size.height);
     }
     return 0;
 }

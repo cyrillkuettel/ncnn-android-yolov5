@@ -165,15 +165,21 @@ void MyNdkCamera::on_image_render(cv::Mat& rgb) const
         if (g_yolox)
         {
             std::vector<Object> objects;
-            // g_yolox->detect(rgb, objects);
-            // g_yolox->draw(rgb, objects);
+             g_yolox->detect(rgb, objects);
+             g_yolox->draw(rgb, objects);
 
-            for (auto &object : objects) {
-                __android_log_print(ANDROID_LOG_ERROR, APPNAME, "%s",  class_names[object.label]);
-                const char *label = class_names[object.label];
-                const float prob = object.prob;
-                ncnn_callback_in_java(label, prob);
-            }
+                /*
+                 * // Note this block will crash (!) if  g_yolox->draw is not called.
+                for (auto &object : objects) {
+                    __android_log_print(ANDROID_LOG_ERROR, APPNAME, "%s",  class_names[object.label]);
+                    const char *label = class_names[object.label];
+                    const float prob = object.prob;
+                    ncnn_callback_in_java(label, prob);
+                }
+            */
+
+
+
         }
         else
         {
@@ -181,7 +187,7 @@ void MyNdkCamera::on_image_render(cv::Mat& rgb) const
         }
     }
 
-    draw_fps(rgb);
+    // draw_fps(rgb);
 }
 
 static MyNdkCamera* g_camera = 0;
