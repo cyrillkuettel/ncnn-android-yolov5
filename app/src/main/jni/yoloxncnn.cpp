@@ -150,9 +150,6 @@ public:
     //virtual int getLabel() const;
     virtual void on_image_render(cv::Mat& rgb) const;
 };
-static const char* class_names[] = {
-        "glass", "mask", "mask_glass", "normal"
-};
 
 
 
@@ -165,11 +162,11 @@ void MyNdkCamera::on_image_render(cv::Mat& rgb) const
         if (g_yolox)
         {
             std::vector<Object> objects;
-             g_yolox->detect(rgb, objects);
-             g_yolox->draw(rgb, objects);
+             g_yolox->detect_yolov5(rgb, objects);
+             // g_yolox->draw(rgb, objects);
 
-                /*
-                 * // Note this block will crash (!) if  g_yolox->draw is not called.
+            /*
+                  // Note this block will crash (!) if  g_yolox->draw is not called.
                 for (auto &object : objects) {
                     __android_log_print(ANDROID_LOG_ERROR, APPNAME, "%s",  class_names[object.label]);
                     const char *label = class_names[object.label];
@@ -187,7 +184,7 @@ void MyNdkCamera::on_image_render(cv::Mat& rgb) const
         }
     }
 
-    // draw_fps(rgb);
+     draw_fps(rgb);
 }
 
 static MyNdkCamera* g_camera = 0;

@@ -25,7 +25,10 @@ public:
 
     int load(AAssetManager* mgr, const char* modeltype, int target_size, bool use_gpu = false);
 
-    int detect(const cv::Mat& rgb, std::vector<Object>& objects, float prob_threshold = 0.60f, float nms_threshold = 0.60f);
+    int detect(const cv::Mat& rgb, std::vector<Object>& objects, float prob_threshold = 0.65f, float nms_threshold = 0.75f);
+
+    int detect_yolov5(const cv::Mat& rgb, std::vector<Object>& objects, float prob_threshold = 0.65f, float nms_threshold = 0.75f);
+
 
     int draw(cv::Mat& rgb, const std::vector<Object>& objects);
 
@@ -45,4 +48,4 @@ private:
     ncnn::PoolAllocator workspace_pool_allocator;
 };
 
-#endif // NANODET_H
+#endif // YOLOX_H

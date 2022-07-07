@@ -6,6 +6,7 @@
 #include "cpu.h"
 #define APPNAME "yolox.cpp"
 
+const float norm_vals[3] = {1 / 255.f, 1 / 255.f, 1 / 255.f};
 
 static inline float intersection_area(const Object& a, const Object& b)
 {
@@ -99,6 +100,82 @@ static inline float sigmoid(float x)
 // unsigmoid
 static inline float unsigmoid(float y) {
     return static_cast<float>(-1.0 * (log((1.0 / y) - 1.0)));
+}
+
+
+static void generate_proposals_yolov5(const ncnn::Mat& anchors, int stride, const ncnn::Mat& in_pad, const ncnn::Mat& feat_blob, float prob_threshold, std::vector<Object>& objects)
+{
+    const int num_grid_x = feat_blob.w;
+    const int num_grid_y = feat_blob.h;
+
+    const int num_anchors = anchors.w / 2;
+
+    const int num_class = feat_blob.c / num_anchors - 5;
+
+    const int feat_offset = num_class + 5;
+
+    for (int q = 0; q < num_anchors; q++)
+    {
+        const float anchor_w = anchors[q * 2];
+        const float anchor_h = anchors[q * 2 + 1];
+
+        for (int i = 0; i < num_grid_y; i++)
+        {
+            for (int j = 0; j < num_grid_x; j++)
+            {
+                // find class index with max class score
+                int class_index = 0;
+                float class_score = -FLT_MAX;
+                for (int k = 0; k < num_class; k++)
+                {
+                    float score = feat_blob.channel(q * feat_offset + 5 + k).row(i)[j];
+                    if (score > class_score)
+                    {
+                        class_index = k;
+                        class_score = score;
+                    }
+                }
+
+                float box_score = feat_blob.channel(q * feat_offset + 4).row(i)[j];
+
+                float confidence = sigmoid(box_score) * sigmoid(class_score);
+
+                if (confidence >= prob_threshold)
+                {
+                    // yolov5/models/yolo.py Detect forward
+                    // y = x[i].sigmoid()
+                    // y[..., 0:2] = (y[..., 0:2] * 2. - 0.5 + self.grid[i].to(x[i].device)) * self.stride[i]  # xy
+                    // y[..., 2:4] = (y[..., 2:4] * 2) ** 2 * self.anchor_grid[i]  # wh
+
+                    float dx = sigmoid(feat_blob.channel(q * feat_offset + 0).row(i)[j]);
+                    float dy = sigmoid(feat_blob.channel(q * feat_offset + 1).row(i)[j]);
+                    float dw = sigmoid(feat_blob.channel(q * feat_offset + 2).row(i)[j]);
+                    float dh = sigmoid(feat_blob.channel(q * feat_offset + 3).row(i)[j]);
+
+                    float pb_cx = (dx * 2.f - 0.5f + j) * stride;
+                    float pb_cy = (dy * 2.f - 0.5f + i) * stride;
+
+                    float pb_w = pow(dw * 2.f, 2) * anchor_w;
+                    float pb_h = pow(dh * 2.f, 2) * anchor_h;
+
+                    float x0 = pb_cx - pb_w * 0.5f;
+                    float y0 = pb_cy - pb_h * 0.5f;
+                    float x1 = pb_cx + pb_w * 0.5f;
+                    float y1 = pb_cy + pb_h * 0.5f;
+
+                    Object obj;
+                    obj.rect.x = x0;
+                    obj.rect.y = y0;
+                    obj.rect.width = x1 - x0;
+                    obj.rect.height = y1 - y0;
+                    obj.label = class_index;
+                    obj.prob = confidence;
+
+                    objects.push_back(obj);
+                }
+            }
+        }
+    }
 }
 
 static void generate_proposals(const ncnn::Mat& anchors, int stride, const ncnn::Mat& in_pad, const ncnn::Mat& feat_blob, float prob_threshold, std::vector<Object>& objects)
@@ -250,7 +327,7 @@ int Yolox::load(AAssetManager* mgr, const char* modeltype, int _target_size, boo
     char parampath[256];
     char modelpath[256];
 
-    target_size = 320;
+    target_size = _target_size;
 
     sprintf(parampath, "%s.ncnn.param", modeltype);
     sprintf(modelpath, "%s.ncnn.bin", modeltype);
@@ -264,7 +341,6 @@ int Yolox::load(AAssetManager* mgr, const char* modeltype, int _target_size, boo
 
 int Yolox::detect(const cv::Mat& rgb, std::vector<Object>& objects, float prob_threshold, float nms_threshold)
 {
-
 
     int img_w = rgb.cols;
     int img_h = rgb.rows;
@@ -299,7 +375,6 @@ int Yolox::detect(const cv::Mat& rgb, std::vector<Object>& objects, float prob_t
 
     // so for 0-255 input image, rgb_mean should multiply 255 and norm should div by std.
 
-    const float norm_vals[3] = {1 / 255.f, 1 / 255.f, 1 / 255.f};
     in_pad.substract_mean_normalize(0, norm_vals);
 
     ncnn::Extractor ex = yolox.create_extractor();
@@ -326,7 +401,6 @@ int Yolox::detect(const cv::Mat& rgb, std::vector<Object>& objects, float prob_t
 
         proposals.insert(proposals.end(), objects8.begin(), objects8.end());
     }
-    __android_log_print(ANDROID_LOG_DEBUG, APPNAME, "stride 8 worked");
 
     // stride 16
     {
@@ -346,7 +420,6 @@ int Yolox::detect(const cv::Mat& rgb, std::vector<Object>& objects, float prob_t
 
         proposals.insert(proposals.end(), objects16.begin(), objects16.end());
     }
-    __android_log_print(ANDROID_LOG_DEBUG, APPNAME, "stride 16 worked");
 
     // stride 32
     {
@@ -366,11 +439,9 @@ int Yolox::detect(const cv::Mat& rgb, std::vector<Object>& objects, float prob_t
 
         proposals.insert(proposals.end(), objects32.begin(), objects32.end());
     }
-    __android_log_print(ANDROID_LOG_DEBUG, APPNAME, "stride 32 worked");
 
     // sort all proposals by score from highest to lowest
     qsort_descent_inplace(proposals);
-    __android_log_print(ANDROID_LOG_DEBUG, APPNAME, "qsort_descent_inplace worked");
 
     // apply nms with nms_threshold
     std::vector<int> picked;
@@ -401,6 +472,146 @@ int Yolox::detect(const cv::Mat& rgb, std::vector<Object>& objects, float prob_t
         objects[i].rect.height = y1 - y0;
 
 
+    }
+
+    return 0;
+}
+
+
+
+int Yolox::detect_yolov5(const cv::Mat& rgb, std::vector<Object>& objects, float prob_threshold, float nms_threshold) {
+
+    // yolox.opt.use_vulkan_compute = true;
+    // yolov5.opt.use_bf16_storage = true;
+
+    int img_w = rgb.cols;
+    int img_h = rgb.rows;
+
+    // yolov5/models/common.py DetectMultiBackend
+    const int max_stride = 64;
+
+    // letterbox pad to multiple of max_stride
+    int w = img_w;
+    int h = img_h;
+    float scale = 1.f;
+    if (w > h)
+    {
+        scale = (float)target_size / w;
+        w = target_size;
+        h = h * scale;
+    }
+    else
+    {
+        scale = (float)target_size / h;
+        h = target_size;
+        w = w * scale;
+    }
+    /** using RGB, this is same as in Yolo::detect, */
+    ncnn::Mat in = ncnn::Mat::from_pixels_resize(rgb.data, ncnn::Mat::PIXEL_RGB, img_w, img_h, w, h);
+
+    // pad to target_size rectangle
+    // yolov5/utils/datasets.py letterbox
+    int wpad = (w + max_stride - 1) / max_stride * max_stride - w;
+    int hpad = (h + max_stride - 1) / max_stride * max_stride - h;
+    ncnn::Mat in_pad;
+    /** what is this? this differs aswell, */
+    ncnn::copy_make_border(in, in_pad, hpad / 2, hpad - hpad / 2, wpad / 2, wpad - wpad / 2, ncnn::BORDER_CONSTANT, 114.f);
+
+    in_pad.substract_mean_normalize(0, norm_vals);
+
+    ncnn::Extractor ex = yolox.create_extractor();
+
+    ex.input("in0", in_pad);
+
+    std::vector<Object> proposals;
+
+    // stride 8
+    {
+        ncnn::Mat out;
+        ex.extract("out0", out);
+
+        ncnn::Mat anchors(6);
+        anchors[0] = 10.f;
+        anchors[1] = 13.f;
+        anchors[2] = 16.f;
+        anchors[3] = 30.f;
+        anchors[4] = 33.f;
+        anchors[5] = 23.f;
+
+        std::vector<Object> objects8;
+        generate_proposals_yolov5(anchors, 8, in_pad, out, prob_threshold, objects8);
+
+        proposals.insert(proposals.end(), objects8.begin(), objects8.end());
+    }
+
+    // stride 16
+    {
+        ncnn::Mat out;
+        ex.extract("out1", out);
+
+        ncnn::Mat anchors(6);
+        anchors[0] = 30.f;
+        anchors[1] = 61.f;
+        anchors[2] = 62.f;
+        anchors[3] = 45.f;
+        anchors[4] = 59.f;
+        anchors[5] = 119.f;
+
+        std::vector<Object> objects16;
+        generate_proposals_yolov5(anchors, 16, in_pad, out, prob_threshold, objects16);
+
+        proposals.insert(proposals.end(), objects16.begin(), objects16.end());
+    }
+
+    // stride 32
+    {
+        ncnn::Mat out;
+        ex.extract("out2", out);
+
+        ncnn::Mat anchors(6);
+        anchors[0] = 116.f;
+        anchors[1] = 90.f;
+        anchors[2] = 156.f;
+        anchors[3] = 198.f;
+        anchors[4] = 373.f;
+        anchors[5] = 326.f;
+
+        std::vector<Object> objects32;
+        generate_proposals_yolov5(anchors, 32, in_pad, out, prob_threshold, objects32);
+
+        proposals.insert(proposals.end(), objects32.begin(), objects32.end());
+    }
+
+    // sort all proposals by score from highest to lowest
+    qsort_descent_inplace(proposals);
+
+    // apply nms with nms_threshold
+    std::vector<int> picked;
+    nms_sorted_bboxes(proposals, picked, nms_threshold);
+
+    int count = picked.size();
+
+    objects.resize(count);
+    for (int i = 0; i < count; i++)
+    {
+        objects[i] = proposals[picked[i]];
+
+        // adjust offset to original unpadded
+        float x0 = (objects[i].rect.x - (wpad / 2)) / scale;
+        float y0 = (objects[i].rect.y - (hpad / 2)) / scale;
+        float x1 = (objects[i].rect.x + objects[i].rect.width - (wpad / 2)) / scale;
+        float y1 = (objects[i].rect.y + objects[i].rect.height - (hpad / 2)) / scale;
+
+        // clip
+        x0 = std::max(std::min(x0, (float)(img_w - 1)), 0.f);
+        y0 = std::max(std::min(y0, (float)(img_h - 1)), 0.f);
+        x1 = std::max(std::min(x1, (float)(img_w - 1)), 0.f);
+        y1 = std::max(std::min(y1, (float)(img_h - 1)), 0.f);
+
+        objects[i].rect.x = x0;
+        objects[i].rect.y = y0;
+        objects[i].rect.width = x1 - x0;
+        objects[i].rect.height = y1 - y0;
     }
 
     return 0;
@@ -444,7 +655,6 @@ int Yolox::draw(cv::Mat& rgb, const std::vector<Object>& objects)
     };
 
     int color_index = 0;
-    int temp;
     for (size_t i = 0; i < objects.size(); i++)
     {
         const Object& obj = objects[i];
