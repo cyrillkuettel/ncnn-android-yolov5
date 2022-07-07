@@ -25,9 +25,9 @@ public:
 
     int load(AAssetManager* mgr, const char* modeltype, int target_size, bool use_gpu = false);
 
-    int detect(const cv::Mat& rgb, std::vector<Object>& objects, float prob_threshold = 0.65f, float nms_threshold = 0.75f);
+    int detect(const cv::Mat& rgb, std::vector<Object>& objects, float prob_threshold = 0.40, float nms_threshold = 0.50f);
 
-    int detect_yolov5(const cv::Mat& rgb, std::vector<Object>& objects, float prob_threshold = 0.65f, float nms_threshold = 0.75f);
+    int detect_yolov5(const cv::Mat& rgb, std::vector<Object>& objects, float prob_threshold = 0.10f, float nms_threshold = 0.20f);
 
     int draw_yolov5(cv::Mat& rgb, const std::vector<Object>& objects);
 

@@ -86,6 +86,17 @@ static int draw_unsupported(cv::Mat& rgb)
 
     return 0;
 }
+static const char* class_names[] = {
+        "person", "bicycle", "car", "motorcycle", "airplane", "bus", "train", "truck", "boat", "traffic light",
+        "fire hydrant", "stop sign", "parking meter", "bench", "bird", "cat", "dog", "horse", "sheep", "cow",
+        "elephant", "bear", "zebra", "giraffe", "backpack", "umbrella", "handbag", "tie", "suitcase", "frisbee",
+        "skis", "snowboard", "sports ball", "kite", "baseball bat", "baseball glove", "skateboard", "surfboard",
+        "tennis racket", "bottle", "wine glass", "cup", "fork", "knife", "spoon", "bowl", "banana", "apple",
+        "sandwich", "orange", "broccoli", "carrot", "hot dog", "pizza", "donut", "cake", "chair", "couch",
+        "potted plant", "bed", "dining table", "toilet", "tv", "laptop", "mouse", "remote", "keyboard", "cell phone",
+        "microwave", "oven", "toaster", "sink", "refrigerator", "book", "clock", "vase", "scissors", "teddy bear",
+        "hair drier", "toothbrush"
+};
 
 static int draw_fps(cv::Mat& rgb)
 {
@@ -163,9 +174,8 @@ void MyNdkCamera::on_image_render(cv::Mat& rgb) const
         {
             std::vector<Object> objects;
              g_yolox->detect_yolov5(rgb, objects);
-             // g_yolox->draw_yolov5(rgb, objects);
+             g_yolox->draw_yolov5(rgb, objects);
 
-            /*
                   // Note this block will crash (!) if  g_yolox->draw is not called.
                 for (auto &object : objects) {
                     __android_log_print(ANDROID_LOG_ERROR, APPNAME, "%s",  class_names[object.label]);
@@ -173,9 +183,6 @@ void MyNdkCamera::on_image_render(cv::Mat& rgb) const
                     const float prob = object.prob;
                     ncnn_callback_in_java(label, prob);
                 }
-            */
-
-
 
         }
         else

@@ -613,11 +613,15 @@ int Yolox::detect_yolov5(const cv::Mat& rgb, std::vector<Object>& objects, float
         objects[i].rect.height = y1 - y0;
     }
     double elapsed = ncnn::get_current_time() - start_time;
+    __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "length of picked objects: %d ", count);
+
     __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "inference time is approx %.2fms ", elapsed);
     return 0;
 }
 
 int Yolox::draw_yolov5(cv::Mat& rgb, const std::vector<Object>& objects) {
+    double start_time = ncnn::get_current_time();
+
     static const char* class_names[] = {
             "person", "bicycle", "car", "motorcycle", "airplane", "bus", "train", "truck", "boat", "traffic light",
             "fire hydrant", "stop sign", "parking meter", "bench", "bird", "cat", "dog", "horse", "sheep", "cow",
@@ -658,6 +662,8 @@ int Yolox::draw_yolov5(cv::Mat& rgb, const std::vector<Object>& objects) {
         cv::putText(image, text, cv::Point(x, y + label_size.height),
                     cv::FONT_HERSHEY_SIMPLEX, 0.5, cv::Scalar(0, 0, 0));
     }
+    double elapsed = ncnn::get_current_time() - start_time;
+    __android_log_print(ANDROID_LOG_VERBOSE, APPNAME, "draw time is approx %.2fms ", elapsed);
     return 0;
 }
 
