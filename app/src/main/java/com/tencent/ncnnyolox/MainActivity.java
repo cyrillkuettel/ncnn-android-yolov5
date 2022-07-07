@@ -138,6 +138,7 @@ public class MainActivity extends AppCompatActivity implements SurfaceHolder.Cal
 
     private void reload()
     {
+        Log.e("MainActivity", "loading model now");
         boolean ret_init = ncnnyolox.loadModel(getAssets(), current_model, current_cpugpu);
         if (!ret_init)
         {
@@ -170,7 +171,6 @@ public class MainActivity extends AppCompatActivity implements SurfaceHolder.Cal
         {
             ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.CAMERA}, REQUEST_CAMERA);
         }
-        //ncnnyolox.getLabel();
        ncnnyolox.openCamera(facing);
     }
 

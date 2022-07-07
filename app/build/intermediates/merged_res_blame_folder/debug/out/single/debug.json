@@ -2,9 +2,5 @@
     {
         "merged": "com.tencent.ncnnyolox.app-merged_res-40:/layout_activity_main.xml.flat",
         "source": "com.tencent.ncnnyolox.app-main-42:/layout/activity_main.xml"
-    },
-    {
-        "merged": "/home/cyrill/.gradle/daemon/7.3.3/com.tencent.ncnnyolox.app-merged_res-40:/layout_activity_main.xml.flat",
-        "source": "/home/cyrill/.gradle/daemon/7.3.3/com.tencent.ncnnyolox.app-main-42:/layout/activity_main.xml"
     }
 ]
