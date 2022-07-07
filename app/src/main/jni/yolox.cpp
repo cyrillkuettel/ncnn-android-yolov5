@@ -208,10 +208,11 @@ int Yolox::load(const char* modeltype, int _target_size, const float* _mean_vals
 
     char parampath[256];
     char modelpath[256];
-    sprintf(parampath, "%s.param", modeltype);
-    sprintf(modelpath, "%s.bin", modeltype);
+    sprintf(parampath, "%s.ncnn.param", modeltype);
+    sprintf(modelpath, "%s.ncnn.bin", modeltype);
+    __android_log_print(ANDROID_LOG_ERROR, "YoloV5Ncnn", "%s", parampath);
 
-    int re = yolox.load_param(parampath);
+    yolox.load_param(parampath);
     //__android_log_print(ANDROID_LOG_ERROR, "YoloV5Ncnn", "%d", re);
     __android_log_print(ANDROID_LOG_ERROR, "YoloV5Ncnn", "%s", parampath);
 
@@ -251,8 +252,8 @@ int Yolox::load(AAssetManager* mgr, const char* modeltype, int _target_size, boo
 
     target_size = 320;
 
-    sprintf(parampath, "%s.param", modeltype);
-    sprintf(modelpath, "%s.bin", modeltype);
+    sprintf(parampath, "%s.ncnn.param", modeltype);
+    sprintf(modelpath, "%s.ncnn.bin", modeltype);
 
     yolox.load_param(mgr, parampath);
     yolox.load_model(mgr, modelpath);

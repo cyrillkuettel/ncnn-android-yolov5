@@ -11,3 +11,16 @@
 843	968	1657228304	/home/cyrill/Downloads/ncnn-android-yolov5/app/build/intermediates/cxx/Debug/4t5x27n5/obj/arm64-v8a/libncnnyolox.so	c25c008f812d4fc
 1	697	1657228365	CMakeFiles/ncnnyolox.dir/yolox.cpp.o	9a8b7235eb65f057
 697	778	1657228365	/home/cyrill/Downloads/ncnn-android-yolov5/app/build/intermediates/cxx/Debug/4t5x27n5/obj/arm64-v8a/libncnnyolox.so	c25c008f812d4fc
+0	667	1657229298	CMakeFiles/ncnnyolox.dir/ndkcamera.cpp.o	61ede3d384841f9
+0	694	1657229298	CMakeFiles/ncnnyolox.dir/yoloxncnn.cpp.o	4c615d67649cbe01
+0	765	1657229298	CMakeFiles/ncnnyolox.dir/yolox.cpp.o	9a8b7235eb65f057
+765	864	1657229299	/home/cyrill/Downloads/ncnn-android-yolov5/app/build/intermediates/cxx/Debug/4t5x27n5/obj/arm64-v8a/libncnnyolox.so	c25c008f812d4fc
+1	878	1657229353	CMakeFiles/ncnnyolox.dir/yolox.cpp.o	9a8b7235eb65f057
+878	1001	1657229353	/home/cyrill/Downloads/ncnn-android-yolov5/app/build/intermediates/cxx/Debug/4t5x27n5/obj/arm64-v8a/libncnnyolox.so	c25c008f812d4fc
+0	832	1657229393	CMakeFiles/ncnnyolox.dir/yolox.cpp.o	9a8b7235eb65f057
+832	924	1657229393	/home/cyrill/Downloads/ncnn-android-yolov5/app/build/intermediates/cxx/Debug/4t5x27n5/obj/arm64-v8a/libncnnyolox.so	c25c008f812d4fc
+0	702	1657229571	CMakeFiles/ncnnyolox.dir/yoloxncnn.cpp.o	4c615d67649cbe01
+0	841	1657229571	CMakeFiles/ncnnyolox.dir/yolox.cpp.o	9a8b7235eb65f057
+841	1012	1657229571	/home/cyrill/Downloads/ncnn-android-yolov5/app/build/intermediates/cxx/Debug/4t5x27n5/obj/arm64-v8a/libncnnyolox.so	c25c008f812d4fc
+1	647	1657229878	CMakeFiles/ncnnyolox.dir/yolox.cpp.o	9a8b7235eb65f057
+647	734	1657229878	/home/cyrill/Downloads/ncnn-android-yolov5/app/build/intermediates/cxx/Debug/4t5x27n5/obj/arm64-v8a/libncnnyolox.so	c25c008f812d4fc

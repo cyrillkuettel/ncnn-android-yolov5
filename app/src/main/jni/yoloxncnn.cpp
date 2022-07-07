@@ -165,8 +165,8 @@ void MyNdkCamera::on_image_render(cv::Mat& rgb) const
         if (g_yolox)
         {
             std::vector<Object> objects;
-            g_yolox->detect(rgb, objects);
-            g_yolox->draw(rgb, objects);
+            // g_yolox->detect(rgb, objects);
+            // g_yolox->draw(rgb, objects);
 
             for (auto &object : objects) {
                 __android_log_print(ANDROID_LOG_ERROR, APPNAME, "%s",  class_names[object.label]);

@@ -138,7 +138,7 @@ public class MainActivity extends AppCompatActivity implements SurfaceHolder.Cal
 
     private void reload()
     {
-        Log.e("MainActivity", "loading model now");
+        Log.e("MainActivity", "loading model now: ");
         boolean ret_init = ncnnyolox.loadModel(getAssets(), current_model, current_cpugpu);
         if (!ret_init)
         {

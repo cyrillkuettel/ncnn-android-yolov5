@@ -1,2 +1,12 @@
 ninja: Entering directory `/home/cyrill/Downloads/ncnn-android-yolov5/app/.cxx/Debug/4t5x27n5/arm64-v8a'
-ninja: no work to do.
+[1/2] Building CXX object CMakeFiles/ncnnyolox.dir/yolox.cpp.o
+/home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/jni/yolox.cpp:477:112: warning: format specifies type 'double' but the argument has type 'int' [-Wformat]
+        __android_log_print(ANDROID_LOG_DEBUG, "YoloV5Ncnn", "%d %d %d %.2f %.2f coordinate", x, y, obj.label, label_size.width, label_size.height);
+                                                                       ~~~~                                    ^~~~~~~~~~~~~~~~
+                                                                       %.2d
+/home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/jni/yolox.cpp:477:130: warning: format specifies type 'double' but the argument has type 'int' [-Wformat]
+        __android_log_print(ANDROID_LOG_DEBUG, "YoloV5Ncnn", "%d %d %d %.2f %.2f coordinate", x, y, obj.label, label_size.width, label_size.height);
+                                                                            ~~~~                                                 ^~~~~~~~~~~~~~~~~
+                                                                            %.2d
+2 warnings generated.
+[2/2] Linking CXX shared library /home/cyrill/Downloads/ncnn-android-yolov5/app/build/intermediates/cxx/Debug/4t5x27n5/obj/arm64-v8a/libncnnyolox.so
