@@ -457,7 +457,7 @@ int Yolox::draw(cv::Mat& rgb, const std::vector<Object>& objects)
 
         cv::putText(rgb, text, cv::Point(x, y + label_size.height), cv::FONT_HERSHEY_SIMPLEX, 0.5, textcc, 1);
 
-        __android_log_print(ANDROID_LOG_DEBUG, "YoloV5Ncnn", "%d %d %d %.2f %.2f coordinate", x, y, obj.label, label_size.width, label_size.height);
+        __android_log_print(ANDROID_LOG_DEBUG, "YoloV5Ncnn", "%d %d %d %.2d %.2d coordinate", x, y, obj.label, label_size.width, label_size.height);
     }
     return 0;
 }

@@ -172,6 +172,11 @@ void MyNdkCamera::on_image_render(cv::Mat& rgb) const
                 __android_log_print(ANDROID_LOG_ERROR, APPNAME, "%s",  class_names[object.label]);
                 const char *label = class_names[object.label];
                 const float prob = object.prob;
+                float _x = object.rect.x;
+                float _y = object.rect.y;
+                float width = object.rect.width;
+                float height = object.rect.height;
+
                 ncnn_callback_in_java(label, prob);
             }
         }
