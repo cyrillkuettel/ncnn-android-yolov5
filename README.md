@@ -6,8 +6,9 @@ https://github.com/Tencent/ncnn
 
 https://github.com/nihui/opencv-mobile
 
+# Warning
 This is an implementation of https://github.com/Tencent/ncnn/blob/master/examples/yolov5_pnnx.cpp 
-for android. 
+for android. It is still in development and there are incorrect parts in it.
 
 ## how to build and run
 ### step1
