@@ -15,6 +15,8 @@
 package com.tencent.ncnnyolox;
 
 import android.Manifest;
+import android.app.Activity;
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.PixelFormat;
 import android.os.Bundle;
@@ -28,6 +30,9 @@ import android.widget.Button;
 import android.widget.Spinner;
 
 import com.tencent.ncnnyolox.databinding.ActivityMainBinding;
+import com.tencent.ncnnyolox.pixelcopy.ImageCopyRequest;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -35,19 +40,26 @@ import androidx.core.content.ContextCompat;
 
 public class MainActivity extends AppCompatActivity implements SurfaceHolder.Callback
 {
-    public static final int REQUEST_CAMERA = 100;
-
+    public static final int REQUEST_CAMERA = 100; //  random
+    private static final String TAG = "MainActivity";
+    public static final int REQUEST_READ_WRITE_EXTERNAL_STORAGE = 112;  //  random
     private NcnnYolox ncnnyolox = new NcnnYolox();
     private ActivityMainBinding binding;
 
     private int facing = 0;
-
+    Context mContext = MainActivity.this;
     private Spinner spinnerModel;
     private Spinner spinnerCPUGPU;
     private int current_model = 0;
     private int current_cpugpu = 0;
 
     private SurfaceView cameraView;
+    private ImageCopyRequest imageCopyRequest;
+
+
+
+    public static final String[] EXTERNAL_STORAGE_PERMISSIONS = {Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
     /**
      ╔═══════════╤═════╗      Object detected     ╔═════════════════════╤═════╗
@@ -55,7 +67,6 @@ public class MainActivity extends AppCompatActivity implements SurfaceHolder.Cal
      ╚═══════════╧═════╝                          ╚═════════════════════╧═════╝
      * */
     public void callback(String output, String probability) {
-        Log.d("ncnn", "识别结果：" + output);
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -81,17 +92,30 @@ public class MainActivity extends AppCompatActivity implements SurfaceHolder.Cal
         cameraView.getHolder().addCallback(this);
         ncnnyolox.injectObjectReference(this); /** Get a reference to the Object MainActivity*/
 
+        imageCopyRequest = new ImageCopyRequest(cameraView);
+
+        if (!hasPermissions(mContext, EXTERNAL_STORAGE_PERMISSIONS)) {
+            ActivityCompat.requestPermissions((Activity) mContext, EXTERNAL_STORAGE_PERMISSIONS,
+                    REQUEST_READ_WRITE_EXTERNAL_STORAGE);
+
+            Log.d(TAG, "Requesting permissions");
+
+        } else {
+            Log.d(TAG, "Ok: READ_EXTERNAL_STORAGE permission already granted");
+            imageCopyRequest.setHasPermissionToSave(true);
+        }
+
+        binding.buttonCropImage.setOnClickListener(arg0 -> {
+            imageCopyRequest.start();
+        });
+
         Button buttonSwitchCamera = (Button) findViewById(R.id.buttonSwitchCamera);
         buttonSwitchCamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
-
                 int new_facing = 1 - facing;
-
                 ncnnyolox.closeCamera();
-
                 ncnnyolox.openCamera(new_facing);
-
                 facing = new_facing;
             }
         });
@@ -166,11 +190,10 @@ public class MainActivity extends AppCompatActivity implements SurfaceHolder.Cal
     {
         super.onResume();
 
-        if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_DENIED)
+        if (ContextCompat.checkSelfPermission(mContext, Manifest.permission.CAMERA) == PackageManager.PERMISSION_DENIED)
         {
             ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.CAMERA}, REQUEST_CAMERA);
         }
-        //ncnnyolox.getLabel();
        ncnnyolox.openCamera(facing);
     }
 
@@ -180,5 +203,39 @@ public class MainActivity extends AppCompatActivity implements SurfaceHolder.Cal
         super.onPause();
 
         ncnnyolox.closeCamera();
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if (requestCode == REQUEST_READ_WRITE_EXTERNAL_STORAGE) {
+            if (grantResults.length == 0) {
+                Log.e(TAG, "grantResults.length == 0");
+
+            }
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                imageCopyRequest.setHasPermissionToSave(true);
+                Log.d(TAG, "Great! we now have permissions for storage.");
+
+            } else {
+                imageCopyRequest.setHasPermissionToSave(false);
+                Log.e(TAG, "The app was not allowed to write  storage.");
+
+            }
+        }
+    }
+
+    private static boolean hasPermissions(Context context, String... permissions) {
+        if (context != null && permissions != null) {
+            for (String permission : permissions) {
+                if (ActivityCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }

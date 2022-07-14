@@ -4397,25 +4397,6 @@
                     }
                 },
                 {
-                    "source": "/home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/res/values/strings.xml",
-                    "from": {
-                        "startLines": "7,3,2",
-                        "startColumns": "0,0,0",
-                        "startOffsets": "214,99,53",
-                        "endLines": "10,6,2",
-                        "endColumns": "15,15,44",
-                        "endOffsets": "309,212,97"
-                    },
-                    "to": {
-                        "startLines": "2,6,1614",
-                        "startColumns": "4,4,4",
-                        "startOffsets": "150,247,98306",
-                        "endLines": "5,9,1614",
-                        "endColumns": "15,15,48",
-                        "endOffsets": "242,357,98350"
-                    }
-                },
-                {
                     "source": "/home/cyrill/.gradle/caches/transforms-3/387d5ef4643d90387856cf012a81eaaf/transformed/transition-1.4.1/res/values/values.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11",
@@ -4523,6 +4504,25 @@
                         "startOffsets": "92569",
                         "endColumns": "53",
                         "endOffsets": "92618"
+                    }
+                },
+                {
+                    "source": "/home/cyrill/ncnn-android-yolov5/app/src/main/res/values/strings.xml",
+                    "from": {
+                        "startLines": "7,3,2",
+                        "startColumns": "0,0,0",
+                        "startOffsets": "214,99,53",
+                        "endLines": "10,6,2",
+                        "endColumns": "15,15,44",
+                        "endOffsets": "309,212,97"
+                    },
+                    "to": {
+                        "startLines": "2,6,1614",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "150,247,98306",
+                        "endLines": "5,9,1614",
+                        "endColumns": "15,15,48",
+                        "endOffsets": "242,357,98350"
                     }
                 },
                 {

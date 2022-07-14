@@ -54,7 +54,7 @@ static void ncnn_callback_in_java(const char *objectLabel, const float prob) {
         __android_log_print(ANDROID_LOG_ERROR, APPNAME, " JNI_VERSION) != JNI_OK");
         return;
     }
-    __android_log_print(ANDROID_LOG_ERROR, APPNAME, "%s",  objectLabel);
+    // __android_log_print(ANDROID_LOG_ERROR, APPNAME, "%s",  objectLabel);
     std::string probabilityString = std::to_string(prob);
     const char* probabilityChar = probabilityString.c_str();
     jstring jprobability = ncnn_env->NewStringUTF(probabilityChar);
@@ -169,7 +169,7 @@ void MyNdkCamera::on_image_render(cv::Mat& rgb) const
             g_yolox->draw(rgb, objects);
 
             for (auto &object : objects) {
-                __android_log_print(ANDROID_LOG_ERROR, APPNAME, "%s",  class_names[object.label]);
+                // __android_log_print(ANDROID_LOG_ERROR, APPNAME, "%s",  class_names[object.label]);
                 const char *label = class_names[object.label];
                 const float prob = object.prob;
                 float _x = object.rect.x;

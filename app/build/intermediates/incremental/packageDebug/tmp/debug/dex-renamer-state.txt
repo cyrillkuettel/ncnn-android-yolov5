@@ -1,13 +1,16 @@
-#Fri Jul 08 13:19:49 CEST 2022
+#Fri Jul 15 00:29:21 CEST 2022
+path.4=2/classes.dex
 path.3=8/classes.dex
 path.2=1/classes.dex
 path.1=0/classes.dex
 path.0=classes.dex
-base.3=/home/cyrill/Downloads/ncnn-android-yolov5/app/build/intermediates/dex/debug/mergeProjectDexDebug/8/classes.dex
-base.2=/home/cyrill/Downloads/ncnn-android-yolov5/app/build/intermediates/dex/debug/mergeProjectDexDebug/1/classes.dex
-base.1=/home/cyrill/Downloads/ncnn-android-yolov5/app/build/intermediates/dex/debug/mergeProjectDexDebug/0/classes.dex
-base.0=/home/cyrill/Downloads/ncnn-android-yolov5/app/build/intermediates/dex/debug/mergeExtDexDebug/classes.dex
+base.4=/home/cyrill/ncnn-android-yolov5/app/build/intermediates/dex/debug/mergeProjectDexDebug/2/classes.dex
+base.3=/home/cyrill/ncnn-android-yolov5/app/build/intermediates/dex/debug/mergeProjectDexDebug/8/classes.dex
+base.2=/home/cyrill/ncnn-android-yolov5/app/build/intermediates/dex/debug/mergeProjectDexDebug/1/classes.dex
+base.1=/home/cyrill/ncnn-android-yolov5/app/build/intermediates/dex/debug/mergeProjectDexDebug/0/classes.dex
+base.0=/home/cyrill/ncnn-android-yolov5/app/build/intermediates/dex/debug/mergeExtDexDebug/classes.dex
 renamed.3=classes4.dex
 renamed.2=classes3.dex
 renamed.1=classes2.dex
 renamed.0=classes.dex
+renamed.4=classes5.dex

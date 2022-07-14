@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:2:1-21:12
-INJECTED from /home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:2:1-21:12
-INJECTED from /home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:2:1-21:12
-INJECTED from /home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:2:1-21:12
+ADDED from /home/cyrill/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:2:1-26:12
+INJECTED from /home/cyrill/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:2:1-26:12
+INJECTED from /home/cyrill/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:2:1-26:12
+INJECTED from /home/cyrill/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:2:1-26:12
 MERGED from [androidx.databinding:viewbinding:7.2.1] /home/cyrill/.gradle/caches/transforms-3/91064bfcf3d834d346489b916c2e9ee8/transformed/jetified-viewbinding-7.2.1/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.navigation:navigation-ui:2.5.0] /home/cyrill/.gradle/caches/transforms-3/5e9ccc35ae1ffabf359a5aa4fa89309d/transformed/navigation-ui-2.5.0/AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.android.material:material:1.6.1] /home/cyrill/.gradle/caches/transforms-3/bfec8dfcaf6c34e166a516bbd7a3f400/transformed/material-1.6.1/AndroidManifest.xml:17:1-26:12
@@ -57,33 +57,45 @@ MERGED from [androidx.lifecycle:lifecycle-livedata:2.0.0] /home/cyrill/.gradle/c
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.5.0] /home/cyrill/.gradle/caches/transforms-3/cb2f2a5e828426051261117d912bdaed/transformed/lifecycle-livedata-core-2.5.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.arch.core:core-runtime:2.1.0] /home/cyrill/.gradle/caches/transforms-3/18bea7d8b6ce63feab6ed492d57d56cb/transformed/core-runtime-2.1.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.annotation:annotation-experimental:1.1.0] /home/cyrill/.gradle/caches/transforms-3/cc06242ea379559a7b6be7811f23a532/transformed/jetified-annotation-experimental-1.1.0/AndroidManifest.xml:17:1-24:12
-INJECTED from /home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:2:1-21:12
-INJECTED from /home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:2:1-21:12
-INJECTED from /home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:2:1-21:12
+INJECTED from /home/cyrill/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:2:1-26:12
+INJECTED from /home/cyrill/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:2:1-26:12
+INJECTED from /home/cyrill/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:2:1-26:12
 	package
-		ADDED from /home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:3:7-38
-		INJECTED from /home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/AndroidManifest.xml
-		INJECTED from /home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/AndroidManifest.xml
+		ADDED from /home/cyrill/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:3:7-38
+		INJECTED from /home/cyrill/ncnn-android-yolov5/app/src/main/AndroidManifest.xml
+		INJECTED from /home/cyrill/ncnn-android-yolov5/app/src/main/AndroidManifest.xml
 	android:versionName
-		ADDED from /home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:5:7-32
-		INJECTED from /home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/AndroidManifest.xml
-		INJECTED from /home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/AndroidManifest.xml
+		ADDED from /home/cyrill/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:5:7-32
+		INJECTED from /home/cyrill/ncnn-android-yolov5/app/src/main/AndroidManifest.xml
+		INJECTED from /home/cyrill/ncnn-android-yolov5/app/src/main/AndroidManifest.xml
 	xmlns:android
-		ADDED from /home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:2:11-69
+		ADDED from /home/cyrill/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:2:11-69
 	android:versionCode
-		ADDED from /home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:4:7-30
-		INJECTED from /home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/AndroidManifest.xml
-		INJECTED from /home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/AndroidManifest.xml
+		ADDED from /home/cyrill/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:4:7-30
+		INJECTED from /home/cyrill/ncnn-android-yolov5/app/src/main/AndroidManifest.xml
+		INJECTED from /home/cyrill/ncnn-android-yolov5/app/src/main/AndroidManifest.xml
 uses-permission#android.permission.CAMERA
-ADDED from /home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:6:5-65
+ADDED from /home/cyrill/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:6:5-65
 	android:name
-		ADDED from /home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:6:22-62
+		ADDED from /home/cyrill/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:6:22-62
 uses-feature#android.hardware.camera2.full
-ADDED from /home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:7:5-66
+ADDED from /home/cyrill/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:7:5-66
 	android:name
-		ADDED from /home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:7:19-63
+		ADDED from /home/cyrill/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:7:19-63
+uses-permission#android.permission.READ_EXTERNAL_STORAGE
+ADDED from /home/cyrill/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:9:5-80
+	android:name
+		ADDED from /home/cyrill/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:9:22-77
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from /home/cyrill/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:10:5-81
+	android:name
+		ADDED from /home/cyrill/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:10:22-78
+uses-permission#android.permission.MANAGE_EXTERNAL_STORAGE
+ADDED from /home/cyrill/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:11:5-82
+	android:name
+		ADDED from /home/cyrill/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:11:22-79
 application
-ADDED from /home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:9:5-20:19
+ADDED from /home/cyrill/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:14:5-25:19
 MERGED from [com.google.android.material:material:1.6.1] /home/cyrill/.gradle/caches/transforms-3/bfec8dfcaf6c34e166a516bbd7a3f400/transformed/material-1.6.1/AndroidManifest.xml:24:5-20
 MERGED from [com.google.android.material:material:1.6.1] /home/cyrill/.gradle/caches/transforms-3/bfec8dfcaf6c34e166a516bbd7a3f400/transformed/material-1.6.1/AndroidManifest.xml:24:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] /home/cyrill/.gradle/caches/transforms-3/8ad4b0562467dfb6f3cd10869bd03e3f/transformed/constraintlayout-2.1.4/AndroidManifest.xml:9:5-20
@@ -103,31 +115,31 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /home/cyril
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.8.0] /home/cyrill/.gradle/caches/transforms-3/cd33f26b4f6a5be75c2c675ec5e179dc/transformed/core-1.8.0/AndroidManifest.xml:24:18-86
 	android:label
-		ADDED from /home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:11:9-41
+		ADDED from /home/cyrill/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:16:9-41
 	android:theme
-		ADDED from /home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:10:9-53
+		ADDED from /home/cyrill/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:15:9-53
 activity#com.tencent.ncnnyolox.MainActivity
-ADDED from /home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:12:9-19:20
+ADDED from /home/cyrill/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:17:9-24:20
 	android:screenOrientation
-		ADDED from /home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:14:19-55
+		ADDED from /home/cyrill/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:19:19-55
 	android:label
-		ADDED from /home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:13:19-51
+		ADDED from /home/cyrill/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:18:19-51
 	android:name
-		ADDED from /home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:12:19-46
+		ADDED from /home/cyrill/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:17:19-46
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from /home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:15:13-18:29
+ADDED from /home/cyrill/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:20:13-23:29
 action#android.intent.action.MAIN
-ADDED from /home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:16:17-69
+ADDED from /home/cyrill/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:21:17-69
 	android:name
-		ADDED from /home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:16:25-66
+		ADDED from /home/cyrill/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:21:25-66
 category#android.intent.category.LAUNCHER
-ADDED from /home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:17:17-77
+ADDED from /home/cyrill/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:22:17-77
 	android:name
-		ADDED from /home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:17:27-74
+		ADDED from /home/cyrill/ncnn-android-yolov5/app/src/main/AndroidManifest.xml:22:27-74
 uses-sdk
-INJECTED from /home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from /home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/AndroidManifest.xml
-INJECTED from /home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/AndroidManifest.xml
+INJECTED from /home/cyrill/ncnn-android-yolov5/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /home/cyrill/ncnn-android-yolov5/app/src/main/AndroidManifest.xml
+INJECTED from /home/cyrill/ncnn-android-yolov5/app/src/main/AndroidManifest.xml
 MERGED from [androidx.databinding:viewbinding:7.2.1] /home/cyrill/.gradle/caches/transforms-3/91064bfcf3d834d346489b916c2e9ee8/transformed/jetified-viewbinding-7.2.1/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.databinding:viewbinding:7.2.1] /home/cyrill/.gradle/caches/transforms-3/91064bfcf3d834d346489b916c2e9ee8/transformed/jetified-viewbinding-7.2.1/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.navigation:navigation-ui:2.5.0] /home/cyrill/.gradle/caches/transforms-3/5e9ccc35ae1ffabf359a5aa4fa89309d/transformed/navigation-ui-2.5.0/AndroidManifest.xml:20:5-22:41
@@ -234,16 +246,16 @@ MERGED from [androidx.arch.core:core-runtime:2.1.0] /home/cyrill/.gradle/caches/
 MERGED from [androidx.arch.core:core-runtime:2.1.0] /home/cyrill/.gradle/caches/transforms-3/18bea7d8b6ce63feab6ed492d57d56cb/transformed/core-runtime-2.1.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.annotation:annotation-experimental:1.1.0] /home/cyrill/.gradle/caches/transforms-3/cc06242ea379559a7b6be7811f23a532/transformed/jetified-annotation-experimental-1.1.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.annotation:annotation-experimental:1.1.0] /home/cyrill/.gradle/caches/transforms-3/cc06242ea379559a7b6be7811f23a532/transformed/jetified-annotation-experimental-1.1.0/AndroidManifest.xml:20:5-22:41
-INJECTED from /home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/AndroidManifest.xml
-INJECTED from /home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/AndroidManifest.xml
+INJECTED from /home/cyrill/ncnn-android-yolov5/app/src/main/AndroidManifest.xml
+INJECTED from /home/cyrill/ncnn-android-yolov5/app/src/main/AndroidManifest.xml
 	android:targetSdkVersion
-		INJECTED from /home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/AndroidManifest.xml
-		ADDED from /home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/AndroidManifest.xml
-		INJECTED from /home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/AndroidManifest.xml
+		INJECTED from /home/cyrill/ncnn-android-yolov5/app/src/main/AndroidManifest.xml
+		ADDED from /home/cyrill/ncnn-android-yolov5/app/src/main/AndroidManifest.xml
+		INJECTED from /home/cyrill/ncnn-android-yolov5/app/src/main/AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from /home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/AndroidManifest.xml
-		ADDED from /home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/AndroidManifest.xml
-		INJECTED from /home/cyrill/Downloads/ncnn-android-yolov5/app/src/main/AndroidManifest.xml
+		INJECTED from /home/cyrill/ncnn-android-yolov5/app/src/main/AndroidManifest.xml
+		ADDED from /home/cyrill/ncnn-android-yolov5/app/src/main/AndroidManifest.xml
+		INJECTED from /home/cyrill/ncnn-android-yolov5/app/src/main/AndroidManifest.xml
 provider#androidx.startup.InitializationProvider
 ADDED from [androidx.emoji2:emoji2:1.0.0] /home/cyrill/.gradle/caches/transforms-3/73850b32b2c7ce32b12b91c16b2382c2/transformed/jetified-emoji2-1.0.0/AndroidManifest.xml:26:9-34:20
 MERGED from [androidx.lifecycle:lifecycle-process:2.4.0] /home/cyrill/.gradle/caches/transforms-3/280b8c662ae12c28e2c58a98b88e76a9/transformed/jetified-lifecycle-process-2.4.0/AndroidManifest.xml:26:9-34:20

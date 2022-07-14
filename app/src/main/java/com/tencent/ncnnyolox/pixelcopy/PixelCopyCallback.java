@@ -1,4 +1,4 @@
-package com.tencent.ncnnyolox.image;
+package com.tencent.ncnnyolox.pixelcopy;
 
 import android.graphics.Bitmap;
 import android.os.Environment;
@@ -11,9 +11,7 @@ import java.io.IOException;
 
 /**
  * This class implements the callback after ImageProcessor as initialized the Copy process.
- * So only use this class as part of ImageCopyRequest.
   */
-
 public class PixelCopyCallback implements PostTake {
     private static final String TAG = "PixelCopyCallback";
 
