@@ -1,4 +1,10 @@
-The yolov5-lite object detection
+
+# Disclaimer
+Credit for this project should go to: https://github.com/nihui. I merely made some slight adjustments.
+## What's new
+This repository implements a callback from the C++ Layer to the Android Layer using JNI (java native interface).
+
+
 
 This is a sample ncnn android project, it depends on ncnn library and opencv
 
