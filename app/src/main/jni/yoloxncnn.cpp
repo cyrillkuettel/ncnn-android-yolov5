@@ -34,10 +34,9 @@ jmethodID ncnn_callback;
 jclass MainActivityClass;
 jobject MainActivityObject; // to make non-static calls
 
-
-static jstring string2jstring(const char *pat) {
+static jstring char2string(const char *pat) {
     if (!ncnn_env || ncnn_env == nullptr) {
-        __android_log_print(ANDROID_LOG_DEBUG, APPNAME, "ncnn_env null pointer.");
+        __android_log_print(ANDROID_LOG_DEBUG, APPNAME, "JNI env nullptr.");
     }
 
     jstring jstrBuffer = ncnn_env->NewStringUTF(pat);
@@ -47,22 +46,36 @@ static jstring string2jstring(const char *pat) {
 
     return jstrBuffer;
 }
-static void ncnn_callback_in_java(const char *objectLabel, const float prob) {
 
-    /** Get reference to JNIEnv ncnn_env */
+static jstring float2jstring(const float input) {
+    std::string probabilityString = std::to_string(input);
+    const char* probabilityChar = probabilityString.c_str();
+    jstring string_jni = ncnn_env->NewStringUTF(probabilityChar);
+    return string_jni;
+}
+
+static void call_java_method(const char *objectLabel, const float prob, const cv::Rect_<float> rect) {
+
+    /** Get reference to JNIEnv env */
     if (javaVM_global->GetEnv(reinterpret_cast<void **>(&ncnn_env), JNI_VERSION) != JNI_OK) {
         __android_log_print(ANDROID_LOG_ERROR, APPNAME, " JNI_VERSION) != JNI_OK");
         return;
     }
-    // __android_log_print(ANDROID_LOG_ERROR, APPNAME, "%s",  objectLabel);
-    std::string probabilityString = std::to_string(prob);
-    const char* probabilityChar = probabilityString.c_str();
-    jstring jprobability = ncnn_env->NewStringUTF(probabilityChar);
+    __android_log_print(ANDROID_LOG_ERROR, APPNAME, "%s",  objectLabel);
 
-    ncnn_callback = ncnn_env->GetMethodID(MainActivityClass,"callback",
-                                          "(Ljava/lang/String;Ljava/lang/String;)V");
-    jstring object_label_string = string2jstring(objectLabel);
-    ncnn_env->CallVoidMethod(MainActivityObject, ncnn_callback, object_label_string, jprobability);
+    jstring jprobability = float2jstring(prob);
+
+    jstring x = float2jstring(rect.x);
+    jstring y = float2jstring(rect.y);
+    jstring width = float2jstring(rect.width);
+    jstring height = float2jstring(rect.height);
+
+    ncnn_callback = ncnn_env->GetMethodID(
+            MainActivityClass,
+            "callback",
+            "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V");
+    jstring object_label_string = char2string(objectLabel);
+    ncnn_env->CallVoidMethod(MainActivityObject, ncnn_callback, object_label_string, jprobability, x, y, width, height);
 
 }
 
@@ -169,15 +182,12 @@ void MyNdkCamera::on_image_render(cv::Mat& rgb) const
             g_yolox->draw(rgb, objects);
 
             for (auto &object : objects) {
-                // __android_log_print(ANDROID_LOG_ERROR, APPNAME, "%s",  class_names[object.label]);
+                __android_log_print(ANDROID_LOG_ERROR, APPNAME, "%s",  class_names[object.label]);
                 const char *label = class_names[object.label];
                 const float prob = object.prob;
-                float _x = object.rect.x;
-                float _y = object.rect.y;
-                float width = object.rect.width;
-                float height = object.rect.height;
+                const cv::Rect_<float> rectangle = object.rect;
 
-                ncnn_callback_in_java(label, prob);
+                call_java_method(label, prob, rectangle);
             }
         }
         else

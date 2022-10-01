@@ -25,6 +25,7 @@ public  class NcnnYolox
     public native boolean closeCamera();
     public native boolean setOutputWindow(Surface surface);
 
+    /** Inject a reference into the native layer to this object (MainActivity) */
     public native boolean injectObjectReference(MainActivity mainActivity);
 
     static {

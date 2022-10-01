@@ -66,12 +66,12 @@ public class MainActivity extends AppCompatActivity implements SurfaceHolder.Cal
      ║ C++ Layer │ NDK ║------------------------->║ Android / JVM Layer │ SDK ║
      ╚═══════════╧═════╝                          ╚═════════════════════╧═════╝
      * */
-    public void callback(String output, String probability) {
+    public void callback(String output, String probability, String x, String y, String width, String height) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                binding.textViewCurrentLabel.setText(String.format("label: %s, \nprobability: %s",
-                        output, probability));
+                binding.textViewCurrentLabel.setText(String.format("label: %s, \nprobability: %s, Rect: [x: %s, y: %s, width: %s, height: %s ]",
+                        output, probability, x, y, width, height));
             }
         });
     }

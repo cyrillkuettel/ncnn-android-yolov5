@@ -5,15 +5,17 @@ Credit for this project should go to: https://github.com/nihui. I merely made so
 This repository implements a callback from the C++ Layer to the Android Layer using JNI (java native interface).  
 This essentially means you can access the results (label and probability) of the object detection comfortably from the Java Layer, like shown in the following diagram:
 
+✔️  Get detected Object's information (Label, Position and Bounding Box)
+
 ![](docs/Android_Architecture_jni.png)
-In code, this is implemented as a callback in `MainActivity`. This method is called from the native (C/C++) Layer. 
+In code, this boils down to a callback method in `MainActivity`. This method is called by the native (C/C++) Layer. (This happens several times per second) 
 ```Java
-    public void callback(String output, String probability) {
+    public void callback(String output, String probability, String x, String y, String width, String height) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                binding.textViewCurrentLabel.setText(String.format("label: %s, \nprobability: %s",
-                        output, probability));
+                binding.textViewCurrentLabel.setText(String.format("label: %s, \nprobability: %s, Rect: [x: %s, y: %s, width: %s, height: %s ]",
+                        output, probability, x, y, width, height));
             }
         });
     }
