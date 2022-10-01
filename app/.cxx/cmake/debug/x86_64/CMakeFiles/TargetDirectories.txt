@@ -1,3 +1,0 @@
-/home/cyrill/Downloads/ncnn-android-yolov5/app/.cxx/cmake/debug/x86_64/CMakeFiles/rebuild_cache.dir
-/home/cyrill/Downloads/ncnn-android-yolov5/app/.cxx/cmake/debug/x86_64/CMakeFiles/edit_cache.dir
-/home/cyrill/Downloads/ncnn-android-yolov5/app/.cxx/cmake/debug/x86_64/CMakeFiles/ncnnyolox.dir

@@ -1,1 +1,0 @@
-/home/cyrill/Downloads/ncnn-android-yolov5/app/build/intermediates/cxx/Debug/4t5x27n5/obj/arm64-v8a
