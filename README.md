@@ -2,12 +2,14 @@
 # Disclaimer
 Credit for this project should go to: https://github.com/nihui. I merely made some slight adjustments.
 # What's new
-This repository implements a callback from the C++ Layer to the Android Layer using JNI (java native interface).  
-This essentially means you can access the results (label and probability) of the object detection comfortably from the Java Layer, like shown in the following diagram:
 
 ✔️  Get detected Object's information (Label, Position and Bounding Box)
 
-![](docs/Android_Architecture_jni.png)
+This repository implements a callback from the C++ Layer to the Android Layer using JNI (java native interface).  
+This essentially means you can access information about the detected object comfortably from the Java Layer.  
+The following diagram focuses on particular aspects and layers of the architecture.
+
+![](docs/Android_Architecture_jni.png)  
 In code, this boils down to a callback method in `MainActivity`. This method is called by the native (C/C++) Layer. (This happens several times per second) 
 ```Java
     public void callback(String output, String probability, String x, String y, String width, String height) {
@@ -22,6 +24,7 @@ In code, this boils down to a callback method in `MainActivity`. This method is 
 ```
 # Demo
 ![](docs/177433672-4bb84c52-ac42-41ee-a5c3-0f1bbb02d4d5.png)
+
 # ncnn-android-yolo5
 This is a sample ncnn android project, it depends on ncnn library and opencv
 
